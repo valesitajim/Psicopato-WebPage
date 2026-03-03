@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PATOS - Tienda Oficial</title>
+
+    <link rel="icon" href="{{ url_for('static', filename='img/favicon.png') }}" type="image/x-icon"> <!--icono de la página-->
+    <!--importar fuentes tipográficas (letras) de Google Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!--Decarga de las fuentes: "Playfair Display" & "Syncopate"-->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Syncopate:wght@700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <header>
+        <div class="orange-bar">
+            
+            <div class="logo-box">
+                <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo de la marca" class="main-logo">
+            </div>
+
+            <div class="orange-left">
+                <a href="#" class="btn-app">DESCARGAR APP</a>
+                <span class="brand-text">LAN</span>
+            </div>
+
+            <div class="search-box">
+                <input type="text" placeholder="Buscar articulos...">
+            </div>
+
+            <div class="icons-box">
+                <img src="{{ url_for('static', filename='img/perfil.png') }}" alt="Perfil" class="icon-perfil">
+                <img src="{{ url_for('static', filename='img/favoritos.png') }}" alt="Favoritos" class="icon-favoritos">
+                <img src="{{ url_for('static', filename='img/cesta.png') }}" alt="Cesta" class="icon-cesta">
+            </div>
+
+        </div>
+    </header>
+
+    <section class="hero">
+        
+        <div class="hero-images">
+            <img src="{{ url_for('static', filename='img/modelo1.png') }}" alt="Modelo 1">
+            <img src="{{ url_for('static', filename='img/modelo2.png') }}" alt="Modelo 2">
+            <img src="{{ url_for('static', filename='img/modelo3.png') }}" alt="Modelo 3">
+        </div>
+
+        <div class="hero-content">
+            <h1 class="texto-pastel">AQUÍ TENEMOS ROPA</h1>
+            <h1 class="texto-naranja">PA TOS</h1>
+        </div>
+
+    </section>
+
+<section class="benefits-container">
+        <div class="benefit-box light-orange">
+            <p>¿Acabas de llegar? Aprovecha tu descuento de bienvenida.</p>
+        </div>
+        <div class="benefit-box super-light-orange">
+            <p>Descarga nuestra app para hacerte con descuentos exclusivos y enterarte de las novedades.</p>
+        </div>
+        <div class="benefit-box light-orange">
+            <p>¡Disfruta de envíos express sin límites durante un año con PA TOS flash por solo 19,99€!</p>
+        </div>
+        <div class="benefit-box super-light-orange">
+            <p>Devoluciones rápidas y sencillas</p>
+        </div>
+    </section>
+
+    <section class="categoria-split">
+        
+        <div class="split-image">
+            <img src="{{ url_for('static', filename='img/foto_mujer.png') }}" alt="Categoría Mujer">
+        </div>
+
+        <div class="split-content">
+            <h2 class="titulo-caslon">Categoría Mujer</h2>
+            
+            <div class="columns-4">
+                <div class="col">
+                    <h3 class="col-titulo">NIÑA</h3>
+                    <ul>
+                        <li>Abrigos</li><li>Chaquetas</li><li>Camisas</li><li>Pantalones</li><li>Deporte</li><li>Trajes</li><li>Accesorios</li><li>Vaqueros</li><li>Bisutería</li><li>Vestidos</li><li>Blusas</li><li>Faldas</li><li>Tops</li><li>Zapatos</li><li>Fiesta</li>
+                    </ul>
+                </div>
+
+                <div class="col">
+                    <h3 class="col-titulo">JUVENIL</h3>
+                    <ul>
+                        <li>Abrigos</li><li>Chaquetas</li><li>Camisas</li><li>Pantalones</li><li>Deporte</li><li>Trajes</li><li>Accesorios</li><li>Vaqueros</li><li>Bisutería</li><li>Vestidos</li><li>Blusas</li><li>Faldas</li><li>Tops</li><li>Zapatos</li><li>Fiesta</li>
+                    </ul>
+                </div>
+
+                <div class="col">
+                    <h3 class="col-titulo">ADULTA</h3>
+                    <ul>
+                        <li>Abrigos</li><li>Chaquetas</li><li>Camisas</li><li>Pantalones</li><li>Deporte</li><li>Trajes</li><li>Accesorios</li><li>Vaqueros</li><li>Bisutería</li><li>Vestidos</li><li>Blusas</li><li>Faldas</li><li>Tops</li><li>Zapatos</li><li>Fiesta</li>
+                    </ul>
+                </div>
+
+                <div class="col">
+                    <h3 class="col-titulo">MISS</h3>
+                    <ul>
+                        <li>Abrigos</li><li>Chaquetas</li><li>Camisas</li><li>Pantalones</li><li>Deporte</li><li>Trajes</li><li>Accesorios</li><li>Vaqueros</li><li>Bisutería</li><li>Vestidos</li><li>Blusas</li><li>Faldas</li><li>Tops</li><li>Zapatos</li><li>Fiesta</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="categoria-split">
+        
+        <div class="split-content">
+            <h2 class="titulo-caslon">Categoría Hombre</h2>
+            
+            <div class="columns-4">
+                <div class="col">
+                    <h3 class="col-titulo">NIÑO</h3>
+                    <ul>
+                        <li>Accesorios</li><li>Chaquetas</li><li>Abrigos</li><li>Cazadoras</li><li>Pantalones</li><li>Deporte</li><li>Bolsos</li><li>Trajes</li><li>Vaqueros</li><li>Camisas</li><li>Jerseys</li><li>Cárdigan</li><li>Polos</li><li>Zapatos</li><li>Fiesta</li>
+                    </ul>
+                </div>
+
+                <div class="col">
+                    <h3 class="col-titulo">JUVENIL</h3>
+                    <ul>
+                        <li>Accesorios</li><li>Chaquetas</li><li>Abrigos</li><li>Cazadoras</li><li>Pantalones</li><li>Deporte</li><li>Bolsos</li><li>Trajes</li><li>Vaqueros</li><li>Camisas</li><li>Jerseys</li><li>Cárdigan</li><li>Polos</li><li>Zapatos</li><li>Fiesta</li>
+                    </ul>
+                </div>
+
+                <div class="col">
+                    <h3 class="col-titulo">ADULTO</h3>
+                    <ul>
+                        <li>Accesorios</li><li>Chaquetas</li><li>Abrigos</li><li>Cazadoras</li><li>Pantalones</li><li>Deporte</li><li>Bolsos</li><li>Trajes</li><li>Vaqueros</li><li>Camisas</li><li>Jerseys</li><li>Cárdigan</li><li>Polos</li><li>Zapatos</li><li>Fiesta</li>
+                    </ul>
+                </div>
+
+                <div class="col">
+                    <h3 class="col-titulo">MISTER</h3>
+                    <ul>
+                        <li>Accesorios</li><li>Chaquetas</li><li>Abrigos</li><li>Cazadoras</li><li>Pantalones</li><li>Deporte</li><li>Bolsos</li><li>Trajes</li><li>Vaqueros</li><li>Camisas</li><li>Jerseys</li><li>Cárdigan</li><li>Polos</li><li>Zapatos</li><li>Fiesta</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="split-image">
+            <img src="{{ url_for('static', filename='img/foto_hombre.png') }}" alt="Categoría Hombre">
+        </div>
+
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <h2>Más información. Hablemos.</h2>
+            <p>Contáctenos para comentarios, consultas y colaboraciones.</p>
+            <a href="mailto:#" class="email-link">Email</a>
+        </div>
+    </footer>
+</body>
+</html>
+
