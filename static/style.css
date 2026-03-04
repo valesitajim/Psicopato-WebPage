@@ -172,6 +172,9 @@ header { display: flex; flex-direction: column; width: 100%; position: sticky; t
     flex-direction: column;
 }
 
+.texto-hombre {
+    margin-left: 70px; /* tuve que modificarlo manualmente */
+}
 /* La tipografía elegante para el título */
 .titulo-caslon {
     font-family: 'Playfair Display', serif; 
