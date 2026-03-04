@@ -143,14 +143,16 @@ header { display: flex; flex-direction: column; width: 100%; position: sticky; t
     display: flex;
     width: 100%;
     padding: 80px 40px; 
-    gap: 60px; 
+    gap: 50px; /* Separación entre la foto y las columnas */
     background-color: #ffffff;
-    align-items: stretch; /* ¡CLAVE! Obliga a que la mitad de la foto y la mitad del texto midan exactamente lo mismo */
+    align-items: stretch; /* Obliga a que la mitad de la foto y la mitad del texto midan exactamente lo mismo */
+    
 }
 
 .split-image {
-    width: 50%; 
+    flex: 1; /*Usamos flex en vez de width para que la foto ocupe exactamente la mitad del espacio disponible, sin importar el tamaño de la pantalla */
     position: relative; /* Prepara la caja para contener la imagen */
+    margin: 0; /* Elimina cualquier margen aplicado por figure */
 }
 
 .split-image img {
@@ -159,13 +161,13 @@ header { display: flex; flex-direction: column; width: 100%; position: sticky; t
     left: 0;
     width: 100%;
     height: 100%; 
-    object-fit: contain; /* ¡CLAVE! Cambiamos 'cover' por 'contain'. La foto escala hacia abajo sin recortes */
+    object-fit: contain; 
     object-position: center; /* Se asegura de que la foto se mantenga centrada en su mitad */
     border-radius: 4px; 
 }
 
 .split-content {
-    width: 50%; /* La otra mitad para los textos */
+    flex :1; /*"Calcula tú el espacio. Réstale el gap primero, y lo que sobre, divídelo exactamente en dos mitades iguales".*/
     display: flex;
     flex-direction: column;
 }
@@ -195,8 +197,9 @@ header { display: flex; flex-direction: column; width: 100%; position: sticky; t
     letter-spacing: 1px;
 }
 
-.col ul {
-    list-style: none; /* Quita los puntos feos de las listas */
+ul.columns-4, /*apuntamos al <ul> (el contenedor de la lista) */
+ul.columns-4 ul {
+    list-style-type: none; /* Quita los puntos feos de las listas */
     padding: 0;
     margin: 0;
 }
