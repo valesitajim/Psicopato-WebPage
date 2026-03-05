@@ -1,10 +1,10 @@
 /* --- RESETEO BÁSICO --- */
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Helvetica Neue', Arial, sans-serif; }
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Helvetica Neue', Arial, sans-serif; } /* Selector universal */
 
 /* --- ENCABEZADO --- */
-header { display: flex; flex-direction: column; width: 100%; position: sticky; top: 0; z-index: 100;}
+header { display: flex; flex-direction: column; width: 100%; position: sticky; top: 0; z-index: 100;} /* Selector de elemento */
 
-.orange-bar {
+.orange-bar { /*Selector de clase*/
     background-color: #ff6a00; 
     height: 80px; 
     display: flex;
@@ -56,7 +56,7 @@ header { display: flex; flex-direction: column; width: 100%; position: sticky; t
 
 .icons-box { display: flex; gap: 20px; align-items: center; }
 .icons-box img { cursor: pointer; transition: transform 0.2s; }
-.icons-box img:hover { transform: scale(1.1); }
+.icons-box img:hover { transform: scale(1.1); } /* Seudoclase*/
 .icon-perfil { width: 52px; height: 52px; }
 .icon-favoritos { width: 62px; height: 62px; } 
 .icon-cesta { width: 42px; height: 42px; } 
@@ -97,7 +97,7 @@ header { display: flex; flex-direction: column; width: 100%; position: sticky; t
     margin: 0;
     line-height: 1.1; 
     text-transform: uppercase;
-    text-shadow: 2px 2px 15px rgba(0,0,0,0.7); /* Sombra un pelín más fuerte para que destaque sobre las fotos gigantes */
+    text-shadow: 2px 2px 15px rgba(0,0,0,0.7); /* Sombra para que destaque sobre las fotos  */
 }
 
 .texto-pastel { color: #ffb669; }
@@ -129,13 +129,15 @@ header { display: flex; flex-direction: column; width: 100%; position: sticky; t
     line-height: 1.4;
 }
 
-/* Colores de fondo alternos */
-.light-orange {
-    background-color: #ff9d3b; /* Naranja claro (el mismo del botón de la app) */
+/* Seudoelementos de indización */
+/* Selecciona las cajas impares*/
+.benefit-box:nth-child(odd) {
+    background-color: #ff9d3b;
 }
 
-.super-light-orange {
-    background-color: #ffb669; /* Naranja súper claro (casi pastel vainilla) */
+/* Selecciona las cajas pares*/
+.benefit-box:nth-child(even) {
+    background-color: #ffb669;
 }
 
 /* --- SECCIÓN CATEGORÍA (FOTO Y COLUMNAS) --- */
@@ -155,7 +157,7 @@ header { display: flex; flex-direction: column; width: 100%; position: sticky; t
     margin: 0; /* Elimina cualquier margen aplicado por figure */
 }
 
-.split-image img {
+.split-image img { /* Combinador descendiente: apunta a la imagen dentro de la caja de la foto */
     position: absolute;
     top: 0;
     left: 0;
@@ -228,9 +230,8 @@ footer { background-color: #000; color: #fff; text-align: center; padding: 80px 
 .email-link:hover { opacity: 0.8; }
 
 
-/* ======================================================= */
+
 /* --- RESPONSIVIDAD (Móviles y Tablets) --- */
-/* ======================================================= */
 
 @media (max-width: 900px) {
     .orange-bar {

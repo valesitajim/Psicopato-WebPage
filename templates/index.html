@@ -13,7 +13,7 @@
     <!--Decarga de las fuentes: "Playfair Display" & "Syncopate"-->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Syncopate:wght@700&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> <!-- Incluir css mediante hoja de estilo -->
 </head>
 
 <body>
@@ -46,29 +46,31 @@
     <section class="hero">
         
         <div class="hero-images">
-            <img src="{{ url_for('static', filename='img/modelo1.png') }}" alt="Modelo 1">
-            <img src="{{ url_for('static', filename='img/modelo2.png') }}" alt="Modelo 2">
-            <img src="{{ url_for('static', filename='img/modelo3.png') }}" alt="Modelo 3">
+            <img src="{{ url_for('static', filename='img/modelo1.png') }}" alt="Modelo 1" fetchpriority="high">
+            <img src="{{ url_for('static', filename='img/modelo2.png') }}" alt="Modelo 2" fetchpriority="high">
+            <img src="{{ url_for('static', filename='img/modelo3.png') }}" alt="Modelo 3" fetchpriority="high">
         </div>
 
         <div class="hero-content">
-            <h1 class="texto-pastel">AQUÍ TENEMOS ROPA</h1>
-            <h1 class="texto-naranja">PA TOS</h1>
-        </div>
+    <h1>
+        <span class="texto-pastel">AQUÍ TENEMOS ROPA</span><br> <!-- usamos span para que haya solo un h1 -->
+        <span class="texto-naranja">PA TOS</span>
+    </h1>
+</div>
 
     </section>
 
 <section class="benefits-container">
-        <div class="benefit-box light-orange">
+        <div class="benefit-box">
             <p>¿Acabas de llegar? Aprovecha tu descuento de bienvenida.</p>
         </div>
-        <div class="benefit-box super-light-orange">
+        <div class="benefit-box">
             <p>Descarga nuestra app para hacerte con descuentos exclusivos y enterarte de las novedades.</p>
         </div>
-        <div class="benefit-box light-orange">
+        <div class="benefit-box">
             <p>¡Disfruta de envíos express sin límites durante un año con PA TOS flash por solo 19,99€!</p>
         </div>
-        <div class="benefit-box super-light-orange">
+        <div class="benefit-box">
             <p>Devoluciones rápidas y sencillas</p>
         </div>
     </section>
@@ -162,10 +164,13 @@
     <footer>
         <div class="footer-content">
             <h2>Más información. Hablemos.</h2>
-            <p>Contáctenos para comentarios, consultas y colaboraciones.</p>
-            <a href="mailto:#" class="email-link">Email</a>
+            <address>
+                <p>Contáctenos para comentarios, consultas y colaboraciones.</p>
+                <a href="mailto:#" class="email-link">Email</a>
+            </address>
         </div>
     </footer>
+
 </body>
 </html>
 
