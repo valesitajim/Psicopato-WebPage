@@ -1,13 +1,13 @@
 /* --- RESETEO BÁSICO --- */
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Helvetica Neue', Arial, sans-serif; } /* Selector universal */
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Helvetica Neue', Arial, sans-serif; } /* Selector universal, aplicamos fuentes globalmente */
 html {
     font-size: 1rem; /* Establece la base estándar de 16px recomendada*/
 }
 
 /* --- ENCABEZADO --- */
-header { display: flex; flex-direction: column; width: 100%; position: sticky; top: 0; z-index: 100;} /* Selector de elemento */
+header { display: flex; flex-direction: column; width: 100%; position: sticky; top: 0; z-index: 100;} /* Selector de elemento, se mantiene arriba siempre */
 
-.orange-bar { /*Selector de clase*/
+.header__bar { /*Selector de clase*/
     background-color: #ff6a00; 
     height: 80px; 
     display: flex;
@@ -16,7 +16,7 @@ header { display: flex; flex-direction: column; width: 100%; position: sticky; t
     padding-right: 20px;
 }
 
-.logo-box {
+.header__logo-box {
     background-color: #ffffff;
     height: 100%; 
     padding: 0 20px; 
@@ -25,11 +25,11 @@ header { display: flex; flex-direction: column; width: 100%; position: sticky; t
     justify-content: center;
 }
 
-.main-logo { height: 90px; width: auto; object-fit: contain; z-index: 10; }
+.header__logo { height: 90px; width: auto; object-fit: contain; z-index: 10; }
 
-.orange-left { display: flex; align-items: center; gap: 15px; margin-left: 20px; }
+.header__left-section { display: flex; align-items: center; gap: 15px; margin-left: 20px; }
 
-.btn-app {
+.header__app-btn {
     background-color: #ffcc99; 
     color: #ff6a00; 
     text-decoration: none;
@@ -40,11 +40,11 @@ header { display: flex; flex-direction: column; width: 100%; position: sticky; t
     white-space: nowrap; 
 }
 
-.brand-text { color: #ffffff; font-weight: bold; font-size: 1.75em; /* Antes: 28px */; letter-spacing: 1px; }
+.header__brand { color: #ffffff; font-weight: bold; font-size: 1.75em; /* Antes: 28px */; letter-spacing: 1px; }
 
-.search-box { flex-grow: 1; display: flex; justify-content: center; padding: 0 20px; }
+.header__search { flex-grow: 1; display: flex; justify-content: center; padding: 0 20px; }
 
-.search-box input {
+.header__search .header__search-input {
     width: 100%;
     max-width: 650px; 
     padding: 12px 20px; 
@@ -55,14 +55,14 @@ header { display: flex; flex-direction: column; width: 100%; position: sticky; t
     outline: none;
     font-size: 0.9375em; /* Antes: 15px */
 }
-.search-box input::placeholder { color: #999999; }
+.header__search .header__search-input::placeholder { color: #999999; }
 
-.icons-box { display: flex; gap: 20px; align-items: center; }
-.icons-box img { cursor: pointer; transition: transform 0.2s; }
-.icons-box img:hover { transform: scale(1.1); } /* Seudoclase*/
-.icon-perfil { width: 52px; height: 52px; }
-.icon-favoritos { width: 62px; height: 62px; } 
-.icon-cesta { width: 42px; height: 42px; } 
+.header__icons { display: flex; gap: 20px; align-items: center; }
+.header__icons .header__icon { cursor: pointer; transition: transform 0.2s; }
+.header__icons .header__icon:hover { transform: scale(1.1); } /* Seudoclase*/
+.header__icon--profile { width: 52px; height: 52px; }
+.header__icon--favorites { width: 62px; height: 62px; } 
+.header__icon--cart { width: 42px; height: 42px; } 
 
 
 /* --- BANNER PRINCIPAL (3 FOTOS) --- */
@@ -73,18 +73,18 @@ header { display: flex; flex-direction: column; width: 100%; position: sticky; t
     display: flex;
 }
 
-.hero-images {
+.hero__images {
     display: flex;
     width: 100%; /* El contenedor ocupa todo el ancho */
 }
 
-.hero-images img {
+.hero__images .hero__image {
     width: 33.333%; /* Cada foto ocupa exactamente un tercio, pegada a la siguiente */
     height: auto; /* Muestra la foto de pies a cabeza con su proporción y tamaño original */
     display: block; /* Elimina cualquier mini-espacio en blanco "fantasma" que a veces deja el navegador */
 }
 
-.hero-content {
+.hero__content {
     position: absolute;
     bottom: 50px; 
     width: 100%;
@@ -94,7 +94,7 @@ header { display: flex; flex-direction: column; width: 100%; position: sticky; t
     z-index: 10; 
 }
 
-.hero-content h1 {
+.hero__content .hero__title {
     font-family: 'Horizon', sans-serif; 
     font-size: 5rem; 
     margin: 0;
@@ -103,11 +103,11 @@ header { display: flex; flex-direction: column; width: 100%; position: sticky; t
     text-shadow: 2px 2px 15px rgba(0,0,0,0.7); /* Sombra para que destaque sobre las fotos  */
 }
 
-.texto-pastel { color: #ffb669; }
-.texto-naranja { color: #ff6a00; }
+.hero__text--pastel { color: #ffb669; }
+.hero__text--orange { color: #ff6a00; }
 
 /* --- SECCIÓN DE VENTAJAS (4 Rectángulos) --- */
-.benefits-container {
+.benefits {
     display: flex;
     justify-content: space-between; /* Reparte el espacio sobrante equitativamente entre los rectángulos */
     padding: 80px 40px; /* El 80px crea ese gran espacio en blanco arriba y abajo que pediste */
@@ -115,7 +115,7 @@ header { display: flex; flex-direction: column; width: 100%; position: sticky; t
     width: 100%;
 }
 
-.benefit-box {
+.benefits__item {
     width: 21.05%; /* Matemáticamente calculado para que el hueco sea exactamente 1/4 de este tamaño */
     padding: 30px 20px;
     display: flex;
@@ -125,7 +125,7 @@ header { display: flex; flex-direction: column; width: 100%; position: sticky; t
     border-radius: 5px; /* Bordes un pelín redondeados. Bórralo si los quieres puntiagudos 100% */
 }
 
-.benefit-box p {
+.benefits__item p {
     font-size: 0.9375em; /* Antes: 15px */
     font-weight: bold;
     color: #ffffff; /* Gris muy oscuro para que se lea perfecto */
@@ -135,17 +135,17 @@ header { display: flex; flex-direction: column; width: 100%; position: sticky; t
 /* Seudoelementos de indización */
 
 /* Selecciona las cajas impares*/
-.benefit-box:nth-child(odd) {
+.benefits__item--odd {
     background-color: #ff9d3b;
 }
 
 /* Selecciona las cajas pares*/
-.benefit-box:nth-child(even) {
+.benefits__item--even {
     background-color: #ffb669;
 }
 
 /* --- SECCIÓN CATEGORÍA (FOTO Y COLUMNAS) --- */
-.categoria-split {
+.category {
     display: flex;
     width: 100%;
     padding: 80px 40px; 
@@ -155,13 +155,13 @@ header { display: flex; flex-direction: column; width: 100%; position: sticky; t
     
 }
 
-.split-image {
+.category__image {
     flex: 1; /*Usamos flex en vez de width para que la foto ocupe exactamente la mitad del espacio disponible, sin importar el tamaño de la pantalla */
     position: relative; /* Prepara la caja para contener la imagen */
     margin: 0; /* Elimina cualquier margen aplicado por figure */
 }
 
-.split-image img { /* Combinador descendiente: apunta a la imagen dentro de la caja de la foto */
+.category__image .category__img { /* Combinador descendiente: apunta a la imagen dentro de la caja de la foto */
     position: absolute;
     top: 0;
     left: 0;
@@ -172,17 +172,17 @@ header { display: flex; flex-direction: column; width: 100%; position: sticky; t
     border-radius: 4px; 
 }
 
-.split-content {
+.category__content {
     flex :1; /*"Calcula tú el espacio. Réstale el gap primero, y lo que sobre, divídelo exactamente en dos mitades iguales".*/
     display: flex;
     flex-direction: column;
 }
 
-.texto-hombre {
+.category--man .category__content {
     margin-left: 70px; /* tuve que modificarlo manualmente */
 }
 /* La tipografía elegante para el título */
-.titulo-caslon {
+.category__title {
     font-family: 'Playfair Display', serif; 
     font-size: 3.5rem; /* Tamaño grande y elegante */
     color: #ff6a00;
@@ -191,13 +191,13 @@ header { display: flex; flex-direction: column; width: 100%; position: sticky; t
 }
 
 /* Las 4 columnas */
-.columns-4 {
+.category__columns {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
 }
 
-.col-titulo {
+.category__column-title {
     color: #ff6a00; /* Naranja de la marca */
     font-size: 1em;
     margin-bottom: 20px;
@@ -206,14 +206,14 @@ header { display: flex; flex-direction: column; width: 100%; position: sticky; t
     letter-spacing: 1px;
 }
 
-ul.columns-4, /*apuntamos al <ul> (el contenedor de la lista) */
-ul.columns-4 ul {
+ul.category__columns, /*apuntamos al <ul> (el contenedor de la lista) */
+ul.category__columns ul.category__list {
     list-style-type: none; /* Quita los puntos feos de las listas */
     padding: 0;
     margin: 0;
 }
 
-.col ul li {
+.category__column ul.category__list .category__item {
     font-size: 0.875em; /* Antes: 14px */
     color: #555555;
     margin-bottom: 12px;
@@ -221,65 +221,65 @@ ul.columns-4 ul {
     transition: color 0.2s;
 }
 
-.col ul li:hover {
+.category__column ul.category__list .category__item:hover {
     color: #ff6a00; /* Se pone naranja al pasar el ratón */
     text-decoration: underline;
 }
 
 /* --- PIE DE PÁGINA --- */
 footer { background-color: #000; color: #fff; text-align: center; padding: 80px 20px; }
-.footer-content h2 { font-size: 1.75em; margin-bottom: 15px; }
-.footer-content p { font-size: 1em; margin-bottom: 30px; color: #ccc; }
-.email-link { color: #000; background-color: #fff; text-decoration: none; padding: 15px 40px; border-radius: 30px; font-weight: bold; text-transform: uppercase; transition: opacity 0.3s; }
-.email-link:hover { opacity: 0.8; }
+.footer__content .footer__title { font-size: 1.75em; margin-bottom: 15px; }
+.footer__content .footer__text { font-size: 1em; margin-bottom: 30px; color: #ccc; }
+.footer__link { color: #000; background-color: #fff; text-decoration: none; padding: 15px 40px; border-radius: 30px; font-weight: bold; text-transform: uppercase; transition: opacity 0.3s; }
+.footer__link:hover { opacity: 0.8; }
 
 
 
 /* --- RESPONSIVIDAD (Móviles y Tablets) --- */
 
 @media (max-width: 900px) {
-    .orange-bar {
+    .header__bar {
         height: auto; 
         flex-wrap: wrap; 
         padding: 10px 20px;
         gap: 15px;
     }
-    .logo-box { height: 60px; padding: 0 15px; }
-    .main-logo { height: 40px; }
+    .header__logo-box { height: 60px; padding: 0 15px; }
+    .header__logo { height: 40px; }
     
-    .search-box {
+    .header__search {
         order: 5; 
         width: 100%;
         margin-top: 5px;
     }
-    .search-box input { width: 100%; }
-    .icons-box { padding-right: 0; }
+    .header__search .header__search-input { width: 100%; }
+    .header__icons { padding-right: 0; }
     
     .grid { grid-template-columns: repeat(2, 1fr); }
 
-    .benefits-container { flex-wrap: wrap; gap: 20px; }
-    .benefit-box { width: 48%; } /* En tablets se ponen de 2 en 2 */
+    .benefits { flex-wrap: wrap; gap: 20px; }
+    .benefits__item { width: 48%; } /* En tablets se ponen de 2 en 2 */
 
-    .categoria-split { flex-direction: column; gap: 40px; padding: 40px 20px;}
-    .split-image { width: 100%; height: 500px; } /* Le damos altura manual para móviles */
-    .split-content { width: 100%; }
-    .columns-4 { grid-template-columns: repeat(2, 1fr); } 
+    .category { flex-direction: column; gap: 40px; padding: 40px 20px;}
+    .category__image { width: 100%; height: 500px; } /* Le damos altura manual para móviles */
+    .category__content { width: 100%; }
+    .category__columns { grid-template-columns: repeat(2, 1fr); } 
 }
 
 @media (max-width: 600px) {
-    .orange-bar { justify-content: space-between; }
-    .btn-app { display: none; } 
-    .brand-text { font-size: 1.25em; } /* Antes: 20px */
+    .header__bar { justify-content: space-between; }
+    .header__app-btn { display: none; } 
+    .header__brand { font-size: 1.25em; } /* Antes: 20px */
     
-    .icons-box { gap: 15px; }
-    .icon-perfil { width: 32px; height: 32px; }
-    .icon-favoritos { width: 38px; height: 38px; }
-    .icon-cesta { width: 28px; height: 28px; }
+    .header__icons { gap: 15px; }
+    .header__icon--profile { width: 32px; height: 32px; }
+    .header__icon--favorites { width: 38px; height: 38px; }
+    .header__icon--cart { width: 28px; height: 28px; }
     
-    .hero-content h1 { font-size: 2.2rem; }
+    .hero__content .hero__title { font-size: 2.2rem; }
     .categories-container { padding: 30px 15px; }
 
-    .benefit-box { width: 100%; } /* En móviles se pone uno debajo de otro */
+    .benefits__item { width: 100%; } /* En móviles se pone uno debajo de otro */
 
-    .titulo-caslon { font-size: 2.5rem; }
+    .category__title { font-size: 2.5rem; }
 }
