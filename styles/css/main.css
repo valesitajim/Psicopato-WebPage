@@ -1,6 +1,16 @@
 @charset "UTF-8";
-/* --- _variables.scss --- */
-/* --- _header.scss --- */
+/* --- RESETEO BÁSICO --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+} /* Selector universal, aplicamos fuentes globalmente */
+html {
+  font-size: 1rem; /* Establece la base estándar de 16px recomendada*/
+}
+
+/* 3. Layout (Estructura general) */
 .header {
   display: flex;
   flex-direction: column;
@@ -49,8 +59,7 @@
 .header__logo {
   height: 90px;
   width: auto;
-  -o-object-fit: contain;
-     object-fit: contain;
+  object-fit: contain;
   z-index: 10;
 }
 @media (max-width: 900px) {
@@ -178,7 +187,41 @@
   }
 }
 
-/* --- _hero.scss --- */
+/* --- PIE DE PÁGINA --- */
+footer {
+  background-color: #ff6a00;
+  color: #fff;
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.footer__content .footer__title {
+  font-size: 1.75em;
+  margin-bottom: 15px;
+}
+
+.footer__content .footer__text {
+  font-size: 1em;
+  margin-bottom: 30px;
+  color: #fff;
+}
+
+.footer__link {
+  color: #000;
+  background-color: #fff;
+  text-decoration: none;
+  padding: 15px 40px;
+  border-radius: 30px;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: opacity 0.3s;
+}
+
+.footer__link:hover {
+  opacity: 0.8;
+}
+
+/* 4. Pages (El contenido de la página de inicio) */
 .hero {
   position: relative;
   width: 100%;
@@ -223,7 +266,6 @@
   color: #ff6a00;
 }
 
-/* --- _benefits.scss --- */
 .benefits {
   display: flex;
   justify-content: space-between;
@@ -269,7 +311,6 @@
   background-color: #ffb669;
 }
 
-/* --- _categorias.scss --- */
 .category {
   display: flex;
   width: 100%;
@@ -305,10 +346,8 @@
   left: 0;
   width: 100%;
   height: 100%;
-  -o-object-fit: contain;
-     object-fit: contain;
-  -o-object-position: center;
-     object-position: center;
+  object-fit: contain;
+  object-position: center;
   border-radius: 4px;
 }
 .category__content {
@@ -369,49 +408,4 @@
 .category__item:hover {
   color: #ff6a00;
   text-decoration: underline;
-}
-
-/* --- RESETEO BÁSICO --- */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Helvetica Neue", Arial, sans-serif;
-} /* Selector universal, aplicamos fuentes globalmente */
-html {
-  font-size: 1rem; /* Establece la base estándar de 16px recomendada*/
-}
-
-/* --- PIE DE PÁGINA --- */
-footer {
-  background-color: #ff6a00;
-  color: #fff;
-  text-align: center;
-  padding: 80px 20px;
-}
-
-.footer__content .footer__title {
-  font-size: 1.75em;
-  margin-bottom: 15px;
-}
-
-.footer__content .footer__text {
-  font-size: 1em;
-  margin-bottom: 30px;
-  color: #fff;
-}
-
-.footer__link {
-  color: #000;
-  background-color: #fff;
-  text-decoration: none;
-  padding: 15px 40px;
-  border-radius: 30px;
-  font-weight: bold;
-  text-transform: uppercase;
-  transition: opacity 0.3s;
-}
-
-.footer__link:hover {
-  opacity: 0.8;
-}/*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=main.css.map */
