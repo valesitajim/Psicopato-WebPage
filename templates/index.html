@@ -24,21 +24,44 @@
                 <img src="../img/logo.png" alt="Logo de la marca" class="header__logo">
             </div>
 
-            <div class="header__left-section">
-                <a href="#" class="header__app-btn">DESCARGAR APP</a>
-                <span class="header__brand">LAN</span>
+            <div class="header__action">
+                <a href="#" class="header__app-btn" id="btn-app">DESCARGAR APP</a>
+                <div class="header__dropdown" id="drop-app">
+                    <p>Elige tu plataforma:</p>
+                    <a href="#" class="header__dropdown-link">Descargar para iOS</a>
+                    <a href="#" class="header__dropdown-link">Descargar para Android</a>
+                </div>
             </div>
 
             <div class="header__search">
                 <input type="text" placeholder="Buscar articulos..." class="header__search-input">
             </div>
 
-            <div class="header__icons">
-                <img src="../img/perfil.png" alt="Perfil" class="header__icon header__icon--profile">
-                <img src="../img/favoritos.png" alt="Favoritos" class="header__icon header__icon--favorites">
-                <img src="../img/cesta.png" alt="Cesta" class="header__icon header__icon--cart">
-            </div>
+                <div class="header__icons">
+                    <div class="header__action">
+                        <img src="../img/perfil.png" alt="Perfil" class="header__icon header__icon--profile" id="btn-profile">
+                        <div class="header__dropdown" id="drop-profile">
+                            <p><strong>¡Hola!</strong></p>
+                            <a href="#" class="header__dropdown-link">Iniciar sesión</a>
+                            <a href="#" class="header__dropdown-link">Crear cuenta</a>
+                        </div>
+                    </div>
 
+                    <div class="header__action">
+                        <img src="../img/favoritos.png" alt="Favoritos" class="header__icon header__icon--favorites" id="btn-fav">
+                        <div class="header__dropdown" id="drop-fav">
+                            <p>Aún no tienes favoritos. ¡Explora la tienda!</p>
+                        </div>
+                    </div>
+
+                    <div class="header__action">
+                        <img src="../img/cesta.png" alt="Carrito de compras" class="header__icon header__icon--cart" id="btn-cart">
+                        <div class="header__dropdown" id="drop-cart">
+                            <p>Tu carrito está vacío.</p>
+                            <a href="#" class="header__dropdown-link">Ir a pagar</a>
+                        </div>
+                    </div>
+                </div>
         </div>
     </header>
 
@@ -186,6 +209,49 @@
         </div>
     </footer>
 
+<!--Para que al hacer clic se ponga la clase --active (y la cajita aparezca), necesitamos un script.-->
+    <script>
+        // 1. Función para abrir y cerrar las cajas
+        function configurarDropdown(idBoton, idCaja) {
+            const boton = document.getElementById(idBoton);
+            const caja = document.getElementById(idCaja);
+
+            if(boton && caja) {
+                boton.addEventListener('click', function(evento) {
+                    evento.preventDefault(); // Evita que la página salte hacia arriba
+                    
+                    // Si la caja ya está abierta, la cerramos
+                    const estaAbierta = caja.classList.contains('header__dropdown--active');
+                    
+                    // Primero cerramos TODAS las cajas por si había otra abierta
+                    document.querySelectorAll('.header__dropdown').forEach(drop => {
+                        drop.classList.remove('header__dropdown--active');
+                    });
+
+                    // Si NO estaba abierta, la abrimos
+                    if (!estaAbierta) {
+                        caja.classList.add('header__dropdown--active');
+                    }
+                });
+            }
+        }
+
+        // 2. Conectamos cada botón con su caja oculta
+        configurarDropdown('btn-app', 'drop-app');
+        configurarDropdown('btn-profile', 'drop-profile');
+        configurarDropdown('btn-fav', 'drop-fav');
+        configurarDropdown('btn-cart', 'drop-cart');
+
+        // 3. Un toque pro: Cerrar las cajas si el usuario hace clic fuera de ellas
+        document.addEventListener('click', function(evento) {
+            if (!evento.target.closest('.header__action')) {
+                document.querySelectorAll('.header__dropdown').forEach(drop => {
+                    drop.classList.remove('header__dropdown--active');
+                });
+            }
+        });
+    </script>
 </body>
 </html>
+
 

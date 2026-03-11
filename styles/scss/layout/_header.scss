@@ -135,4 +135,58 @@
             @media (max-width: 600px) { width: 28px; height: 28px; }
         }
     }
+    
+    &__action {/*decirle a CSS que las cajitas (.header__dropdown) deben flotar justo debajo de su padre (.header__action) y que, por defecto, deben ser invisibles.*/
+        position: relative; /* Convierte a este contenedor en el "ancla" */
+        display: flex;      /* Mantiene el icono perfectamente alineado */
+        align-items: center;
+        cursor: pointer;    /* Hace que salga la manita al pasar el ratón */
+    }
+
+    &__dropdown {
+        position: absolute;
+        top: 130%; /* Se coloca justo debajo del botón */
+        right: 0; /* Se alinea a la derecha */
+        background-color: $color-fondo;
+        color: $color-texto;
+        min-width: 220px;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.15); /* Sombra elegante */
+        z-index: 200;
+        
+        /* Magia de invisibilidad y animación */
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(15px); /* Empieza un poco más abajo */
+        transition: all 0.3s ease; /* Transición suave */
+
+        p {
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            color: $color-gris;
+        }
+
+        /* Esta clase se la pondremos con JavaScript al hacer clic */
+        &--active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0); /* Sube a su posición original */
+        }
+    }
+
+    &__dropdown-link {
+        display: block;
+        padding: 10px;
+        color: $color-texto;
+        text-decoration: none;
+        font-size: 0.9rem;
+        border-radius: 4px;
+        transition: background-color 0.2s;
+
+        &:hover {
+            background-color: #f5f5f5;
+            color: $color-primario;
+        }
+    }
 }
