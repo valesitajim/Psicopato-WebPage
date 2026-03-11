@@ -8,6 +8,13 @@
     background-color: $color-fondo;
     align-items: stretch;
 
+    /* Quitamos el subrayado feo por defecto de los links azules */
+    .category__link {
+    text-decoration: none;
+    color: inherit; /* Hereda el gris o naranja del category__item */
+    display: block; /* Hace que toda el área sea "clickeable", no solo las letras */
+    }
+
     @media (max-width: 900px) {
         flex-direction: column;
         gap: 40px;

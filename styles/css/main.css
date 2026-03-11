@@ -1,4 +1,7 @@
 @charset "UTF-8";
+/* 1. Abstracts (Variables y Mixins primero) */
+/* --- _variables.scss --- */
+/* 2. Base (El reseteo) */
 /* --- RESETEO BÁSICO --- */
 * {
   margin: 0;
@@ -11,6 +14,7 @@ html {
 }
 
 /* 3. Layout (Estructura general) */
+/* 1. Abstracts (Variables y Mixins primero) */
 .header {
   display: flex;
   flex-direction: column;
@@ -59,7 +63,8 @@ html {
 .header__logo {
   height: 90px;
   width: auto;
-  object-fit: contain;
+  -o-object-fit: contain;
+     object-fit: contain;
   z-index: 10;
 }
 @media (max-width: 900px) {
@@ -222,6 +227,7 @@ footer {
 }
 
 /* 4. Pages (El contenido de la página de inicio) */
+/* 1. Abstracts (Variables y Mixins primero) */
 .hero {
   position: relative;
   width: 100%;
@@ -266,6 +272,7 @@ footer {
   color: #ff6a00;
 }
 
+/* 1. Abstracts (Variables y Mixins primero) */
 .benefits {
   display: flex;
   justify-content: space-between;
@@ -311,6 +318,7 @@ footer {
   background-color: #ffb669;
 }
 
+/* 1. Abstracts (Variables y Mixins primero) */
 .category {
   display: flex;
   width: 100%;
@@ -318,6 +326,12 @@ footer {
   gap: 50px;
   background-color: #ffffff;
   align-items: stretch;
+  /* Quitamos el subrayado feo por defecto de los links azules */
+}
+.category .category__link {
+  text-decoration: none;
+  color: inherit; /* Hereda el gris o naranja del category__item */
+  display: block; /* Hace que toda el área sea "clickeable", no solo las letras */
 }
 @media (max-width: 900px) {
   .category {
@@ -346,8 +360,10 @@ footer {
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  object-position: center;
+  -o-object-fit: contain;
+     object-fit: contain;
+  -o-object-position: center;
+     object-position: center;
   border-radius: 4px;
 }
 .category__content {
@@ -408,4 +424,46 @@ footer {
 .category__item:hover {
   color: #ff6a00;
   text-decoration: underline;
+}
+
+.products-page {
+  padding: 80px 20px;
+  text-align: center;
+  background-color: #ffffff;
+}
+.products-page__title {
+  font-family: "Playfair Display", serif;
+  font-size: 3rem;
+  color: #ff6a00; /* Tu naranja de marca */
+  margin-bottom: 50px;
+}
+.products-page__grid {
+  display: grid;
+  /* Magia pura: crea columnas automáticas que se adaptan a móviles y PC solas */
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto 60px auto;
+}
+.products-page__img {
+  width: 100%;
+  height: 400px;
+  -o-object-fit: cover;
+     object-fit: cover; /* Para que todas las fotos midan igual sin deformarse */
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+.products-page__img:hover {
+  transform: scale(1.05); /* Efecto zoom elegante al pasar el ratón */
+}
+.products-page__btn {
+  background-color: #ff6a00;
+  color: white;
+  text-decoration: none;
+  padding: 15px 30px;
+  border-radius: 30px;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-family: "Helvetica Neue", Arial, sans-serif;
 }/*# sourceMappingURL=main.css.map */
