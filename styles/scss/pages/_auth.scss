@@ -1,0 +1,89 @@
+.auth-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    background-color: #f9f9f9;
+    padding: 20px;
+}
+
+.auth-box {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+
+    &__title {
+        color: #ff6a00;
+        font-family: 'Playfair Display', serif;
+        margin-bottom: 10px;
+        font-size: 2rem;
+    }
+
+    &__subtitle {
+        color: #666;
+        margin-bottom: 30px;
+        font-size: 0.9rem;
+    }
+
+    &__link {
+        color: #ff6a00;
+        text-decoration: none;
+        font-weight: bold;
+        
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+
+    &__group {
+        margin-bottom: 20px;
+    }
+
+    &__label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+        color: #333;
+        font-size: 0.9rem;
+    }
+
+    &__input {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 1rem;
+        outline: none;
+
+        &:focus {
+            border-color: #ff6a00;
+        }
+    }
+
+    &__btn {
+        background-color: #ff6a00;
+        color: white;
+        border: none;
+        padding: 15px;
+        border-radius: 4px;
+        font-size: 1rem;
+        font-weight: bold;
+        cursor: pointer;
+        margin-top: 10px;
+        transition: background-color 0.3s;
+
+        &:hover {
+            background-color: #e65c00;
+        }
+    }
+}

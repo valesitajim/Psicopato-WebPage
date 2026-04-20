@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Cuenta - PATOS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Syncopate:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/main.css"> 
+</head>
+<body>
+
+    <header>
+        <div class="header__bar" style="justify-content: center;">
+            <a href="/">
+                <img src="/static/img/logo.png" alt="Logo de la marca" class="header__logo">
+            </a>
+        </div>
+    </header>
+
+    <main class="auth-page">
+        <div class="auth-box">
+            <h1 class="auth-box__title">Únete a la bandada</h1>
+            <p class="auth-box__subtitle">Crea tu cuenta para guardar favoritos y comprar más rápido.</p>
+
+            <form action="/procesar-registro" method="POST" class="auth-form">
+                
+                <div class="auth-form__group">
+                    <label for="nombre" class="auth-form__label">Nombre completo</label>
+                    <input type="text" id="nombre" name="nombre" class="auth-form__input" required>
+                </div>
+
+                <div class="auth-form__group">
+                    <label for="email" class="auth-form__label">Correo electrónico</label>
+                    <input type="email" id="email" name="email" class="auth-form__input" required>
+                </div>
+
+                <div class="auth-form__group">
+                    <label for="password" class="auth-form__label">Contraseña</label>
+                    <input type="password" id="password" name="password" class="auth-form__input" required>
+                </div>
+
+                <button type="submit" class="auth-form__btn">Crear cuenta</button>
+            </form>
+
+            <p class="auth-box__footer">
+                ¿Ya tienes cuenta? <a href="/login" class="auth-box__link">Inicia sesión aquí</a>
+            </p>
+        </div>
+    </main>
+
+</body>
+</html>
