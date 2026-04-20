@@ -1,0 +1,3 @@
+module TIENDAPATOS
+
+go 1.26
