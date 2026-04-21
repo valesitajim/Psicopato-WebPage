@@ -1,89 +1,152 @@
+// Fondo específico para la página de autenticación
+.auth-body {
+    background-color: #f9f9f9;
+}
+
 .auth-page {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 80vh;
-    background-color: #f9f9f9;
+    min-height: calc(100vh - 80px); // Restamos el alto del header
     padding: 20px;
 }
 
+// Contenedor principal (La caja blanca)
 .auth-box {
     background-color: #ffffff;
-    padding: 40px;
     border-radius: 8px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
     width: 100%;
-    max-width: 450px;
-    text-align: center;
+    max-width: 420px;
+    overflow: hidden;
+
+    &__tabs {
+        display: flex;
+        border-bottom: 1px solid #eee;
+    }
+
+    &__tab {
+        flex: 1;
+        background: none;
+        border: none;
+        padding: 18px 0;
+        font-size: 1rem;
+        font-weight: 600;
+        color: #999;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border-bottom: 3px solid transparent;
+
+        &--active {
+            color: #ff6a00;
+            border-bottom-color: #ff6a00;
+            background-color: #fff;
+        }
+
+        &:hover:not(&--active) {
+            color: #666;
+            background-color: #fdfdfd;
+        }
+    }
 
     &__title {
-        color: #ff6a00;
+        color: #333;
         font-family: 'Playfair Display', serif;
-        margin-bottom: 10px;
-        font-size: 2rem;
+        margin-bottom: 8px;
+        font-size: 1.8rem;
+        text-align: center;
     }
 
     &__subtitle {
         color: #666;
-        margin-bottom: 30px;
+        margin-bottom: 25px;
         font-size: 0.9rem;
+        text-align: center;
     }
 
     &__link {
         color: #ff6a00;
         text-decoration: none;
-        font-weight: bold;
+        font-weight: 600;
+        display: block;
+        text-align: center;
+        margin-top: 15px;
         
         &:hover {
             text-decoration: underline;
         }
+
+        &--small {
+            font-size: 0.85rem;
+            font-weight: normal;
+        }
     }
 }
 
+// Formularios
 .auth-form {
-    display: flex;
-    flex-direction: column;
-    text-align: left;
+    padding: 30px;
+    display: none; // Ocultos por defecto
+
+    &--active {
+        display: block; // Solo se muestra el activo
+        animation: fadeIn 0.4s ease;
+    }
 
     &__group {
-        margin-bottom: 20px;
+        margin-bottom: 18px;
     }
 
     &__label {
         display: block;
-        margin-bottom: 8px;
-        font-weight: bold;
-        color: #333;
-        font-size: 0.9rem;
+        margin-bottom: 6px;
+        font-weight: 600;
+        color: #444;
+        font-size: 0.85rem;
     }
 
     &__input {
         width: 100%;
-        padding: 12px;
-        border: 1px solid #ccc;
+        padding: 12px 15px;
+        border: 1px solid #ddd;
         border-radius: 4px;
         font-size: 1rem;
-        outline: none;
+        color: #333;
+        transition: border-color 0.3s, box-shadow 0.3s;
+        box-sizing: border-box;
 
         &:focus {
+            outline: none;
             border-color: #ff6a00;
+            box-shadow: 0 0 0 3px #ffcc99; // Efecto de resplandor pastel
         }
     }
 
     &__btn {
+        width: 100%;
         background-color: #ff6a00;
         color: white;
         border: none;
-        padding: 15px;
+        padding: 14px;
         border-radius: 4px;
         font-size: 1rem;
         font-weight: bold;
         cursor: pointer;
         margin-top: 10px;
-        transition: background-color 0.3s;
+        transition: background-color 0.3s, transform 0.1s;
 
         &:hover {
             background-color: #e65c00;
         }
+
+        &:active {
+            transform: scale(0.98);
+        }
     }
+}
+
+// Animación suave al cambiar de pestaña
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
 }

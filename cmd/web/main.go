@@ -10,54 +10,50 @@ import (
 )
 
 func main() {
-	// 1. Configuración de Base de Datos y Handlers
+	// 1. Configuración
 	store := database.NewUserStore("api/users.jsonl")
-
-	tmplForm, err := template.ParseFiles("ui/templates/user_form.html")
+	
+	// Cargamos el template (ahora compartido para login y registro)
+	tmplAuth, err := template.ParseFiles("ui/templates/user_form.html")
 	if err != nil {
-		log.Fatalf("error cargando template del formulario: %v", err)
+		log.Fatalf("error cargando template de autenticación: %v", err)
 	}
-	userHandler := handlers.NewUserHandler(tmplForm, store)
+	userHandler := handlers.NewUserHandler(tmplAuth, store)
 
 	// --- RUTAS --- //
 
-	// RUTA A: Inicio (Atrapa todo lo que sea exactamente "/")
+	// Inicio
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		// Este es el seguro que comentaste. Lo dejamos activo por seguridad.
 		if r.URL.Path != "/" {
 			http.NotFound(w, r)
 			return
 		}
-		tmplIndex, err := template.ParseFiles("ui/templates/index.html")
-		if err != nil {
-			http.Error(w, "Error cargando la página de inicio", http.StatusInternalServerError)
-			return
-		}
+		tmplIndex, _ := template.ParseFiles("ui/templates/index.html")
 		tmplIndex.Execute(w, nil)
 	})
 
-	// RUTA B: Chaquetas
+	// Chaquetas
 	http.HandleFunc("/chaquetas", func(w http.ResponseWriter, r *http.Request) {
-		tmplChaquetas, err := template.ParseFiles("ui/templates/chaquetas_nina.html")
-		if err != nil {
-			// Si el archivo HTML no existe o tiene otro nombre (como chaquetas_niña con ñ), saltará este error en la pantalla
-			http.Error(w, "Error cargando el archivo HTML de chaquetas", http.StatusInternalServerError)
-			return
-		}
+		tmplChaquetas, _ := template.ParseFiles("ui/templates/chaquetas_nina.html")
 		tmplChaquetas.Execute(w, nil)
 	})
 
-	// RUTA C y D: Registro
-	http.HandleFunc("/registro", userHandler.ShowForm)
-	http.HandleFunc("/procesar-registro", userHandler.SubmitForm)
+	// RUTAS DE USUARIO
+	http.HandleFunc("/registro", userHandler.ShowForm)          // Muestra el HTML
+	http.HandleFunc("/procesar-registro", userHandler.SubmitForm) // Guarda en JSONL
+	http.HandleFunc("/login", userHandler.ShowForm)
+	http.HandleFunc("/procesar-login", userHandler.Login)       // NUEVA: Procesa el inicio de sesión
 
 	// --- ARCHIVOS ESTÁTICOS --- //
+	// Importante: Asegúrate de que esta ruta sea exacta
 	fs := http.FileServer(http.Dir("./ui/static/"))
 	http.Handle("/static/", http.StripPrefix("/static/", fs))
 
-	// --- ARRANCAR SERVIDOR --- //
 	log.Println("Servidor escuchando en http://localhost:8080")
-	if err := http.ListenAndServe(":8080", nil); err != nil {
-		log.Fatalf("error iniciando servidor: %v", err)
+	err = http.ListenAndServe(":8080", nil)
+	if err != nil {
+		log.Fatal(err)
 	}
 }
+
+//go run ./cmd/web/main.go

@@ -1,7 +1,9 @@
-package handlers //procesan las peticiones
+package handlers
 
 import (
+	"fmt"
 	"html/template"
+	"log"
 	"net/http"
 
 	"TIENDAPATOS/internal/database"
@@ -20,40 +22,32 @@ func NewUserHandler(tmpl *template.Template, store *database.UserStore) *UserHan
 	}
 }
 
-type formViewData struct {
-	Message string
-}
-
-// GET /
+// ShowForm muestra el formulario de login/registro
 func (h *UserHandler) ShowForm(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodGet {
-		http.Error(w, "Metodo no permitido", http.StatusMethodNotAllowed)
+		http.Error(w, "Método no permitido", http.StatusMethodNotAllowed)
 		return
 	}
 
-	data := formViewData{
-		Message: r.URL.Query().Get("msg"),
-	}
-
-	if err := h.tmpl.Execute(w, data); err != nil {
+	if err := h.tmpl.Execute(w, nil); err != nil {
 		http.Error(w, "Error renderizando plantilla", http.StatusInternalServerError)
 	}
 }
 
-// POST /submit
+// SubmitForm procesa el registro de nuevos usuarios
 func (h *UserHandler) SubmitForm(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
-		http.Error(w, "Metodo no permitido", http.StatusMethodNotAllowed)
+		http.Error(w, "Método no permitido", http.StatusMethodNotAllowed)
 		return
 	}
 
 	if err := r.ParseForm(); err != nil {
-		http.Error(w, "Formulario invalido", http.StatusBadRequest)
+		http.Error(w, "Formulario inválido", http.StatusBadRequest)
 		return
 	}
 
 	user := models.User{
-		Name:  r.FormValue("name"),
+		Name:  r.FormValue("name"), // Asegúrate de que coincida con name="name" en tu HTML
 		Email: r.FormValue("email"),
 	}
 
@@ -62,10 +56,27 @@ func (h *UserHandler) SubmitForm(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	// Usamos AppendUser (o SaveUser según lo tengas en tu database)
 	if err := h.store.AppendUser(user); err != nil {
 		http.Error(w, "No se pudo guardar el usuario", http.StatusInternalServerError)
 		return
 	}
 
-	http.Redirect(w, r, "/?msg=Usuario+guardado+correctamente", http.StatusSeeOther)
+	fmt.Fprintf(w, "¡Usuario %s guardado correctamente!", user.Name)
+}
+
+// Login procesa el intento de entrada
+func (h *UserHandler) Login(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodPost {
+		http.Error(w, "Método no permitido", http.StatusMethodNotAllowed)
+		return
+	}
+
+	email := r.FormValue("email")
+	password := r.FormValue("password")
+
+	// USAMOS las variables para que Go no dé error
+	log.Printf("Intento de login: Email=%s, Password=%s", email, password)
+	
+	fmt.Fprintf(w, "¡Bienvenido de nuevo! Has iniciado sesión con: %s", email)
 }

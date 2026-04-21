@@ -3,50 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear Cuenta - PATOS</title>
+    <link rel="icon" href="/static/img/favicon.png" type="image/x-icon"> <!--icono de la página-->
+    <title>Acceso - PATOS</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Syncopate:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/static/css/main.css"> 
+    <link rel="stylesheet" href="/static/css/main.css">
 </head>
-<body>
 
-    <header>
-        <div class="header__bar" style="justify-content: center;">
-            <a href="/">
-                <img src="/static/img/logo.png" alt="Logo de la marca" class="header__logo">
-            </a>
-        </div>
+<body class="auth-body">
+
+    <header class="header__bar" style="justify-content: center;">
+        <a href="/">
+            <img src="/static/img/logo.png" alt="Logo PATOS" class="header__logo">
+        </a>
     </header>
 
     <main class="auth-page">
         <div class="auth-box">
-            <h1 class="auth-box__title">Únete a la bandada</h1>
-            <p class="auth-box__subtitle">Crea tu cuenta para guardar favoritos y comprar más rápido.</p>
+            
+            <div class="auth-box__tabs">
+                <button class="auth-box__tab auth-box__tab--active" id="tab-login" onclick="switchTab('login')">Iniciar Sesión</button>
+                <button class="auth-box__tab" id="tab-register" onclick="switchTab('register')">Crear Cuenta</button>
+            </div>
 
-            <form action="/procesar-registro" method="POST" class="auth-form">
-                
+            <form action="/procesar-login" method="POST" class="auth-form auth-form--active" id="form-login">
+                <h1 class="auth-box__title">¡Hola de nuevo!</h1>
+                <p class="auth-box__subtitle">Accede para ver tus pedidos y favoritos.</p>
+
                 <div class="auth-form__group">
-                    <label for="nombre" class="auth-form__label">Nombre completo</label>
-                    <input type="text" id="nombre" name="nombre" class="auth-form__input" required>
+                    <label for="login-email" class="auth-form__label">Correo electrónico</label>
+                    <input type="email" id="login-email" name="email" class="auth-form__input" required>
                 </div>
 
                 <div class="auth-form__group">
-                    <label for="email" class="auth-form__label">Correo electrónico</label>
-                    <input type="email" id="email" name="email" class="auth-form__input" required>
+                    <label for="login-password" class="auth-form__label">Contraseña</label>
+                    <input type="password" id="login-password" name="password" class="auth-form__input" required>
+                </div>
+
+                <button type="submit" class="auth-form__btn">Entrar a mi cuenta</button>
+                <a href="#" class="auth-box__link auth-box__link--small">¿Olvidaste tu contraseña?</a>
+            </form>
+
+            <form action="/procesar-registro" method="POST" class="auth-form" id="form-register">
+                <h1 class="auth-box__title">Únete a nosotros</h1>
+                <p class="auth-box__subtitle">Crea tu cuenta de forma rápida y segura.</p>
+
+                <div class="auth-form__group">
+                    <label for="reg-nombre" class="auth-form__label">Nombre completo</label>
+                    <input type="text" id="reg-nombre" name="name" class="auth-form__input" required>
                 </div>
 
                 <div class="auth-form__group">
-                    <label for="password" class="auth-form__label">Contraseña</label>
-                    <input type="password" id="password" name="password" class="auth-form__input" required>
+                    <label for="reg-email" class="auth-form__label">Correo electrónico</label>
+                    <input type="email" id="reg-email" name="email" class="auth-form__input" required>
+                </div>
+
+                <div class="auth-form__group">
+                    <label for="reg-password" class="auth-form__label">Contraseña</label>
+                    <input type="password" id="reg-password" name="password" class="auth-form__input" required>
                 </div>
 
                 <button type="submit" class="auth-form__btn">Crear cuenta</button>
             </form>
 
-            <p class="auth-box__footer">
-                ¿Ya tienes cuenta? <a href="/login" class="auth-box__link">Inicia sesión aquí</a>
-            </p>
         </div>
     </main>
 
+    <script>
+        function switchTab(tabName) {
+            // Elementos del DOM
+            const formLogin = document.getElementById('form-login');
+            const formRegister = document.getElementById('form-register');
+            const tabLoginBtn = document.getElementById('tab-login');
+            const tabRegisterBtn = document.getElementById('tab-register');
+
+            if (tabName === 'login') {
+                // Mostrar Login
+                formLogin.classList.add('auth-form--active');
+                formRegister.classList.remove('auth-form--active');
+                // Estilo pestaña
+                tabLoginBtn.classList.add('auth-box__tab--active');
+                tabRegisterBtn.classList.remove('auth-box__tab--active');
+            } else {
+                // Mostrar Registro
+                formRegister.classList.add('auth-form--active');
+                formLogin.classList.remove('auth-form--active');
+                // Estilo pestaña
+                tabRegisterBtn.classList.add('auth-box__tab--active');
+                tabLoginBtn.classList.remove('auth-box__tab--active');
+            }
+        }
+    </script>
 </body>
 </html>
