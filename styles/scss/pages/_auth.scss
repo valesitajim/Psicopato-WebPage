@@ -106,6 +106,40 @@
         }
     }
 
+    &__password-wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+    }
+
+    // Le damos un poco más de espacio a la derecha al input para que el texto no se monte encima del ojo
+    &__input[type="password"],
+    &__input[type="text"] {
+        padding-right: 45px; 
+    }
+
+    &__eye-btn {
+        position: absolute;
+        right: 12px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: #999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        transition: color 0.3s ease;
+
+        &:hover {
+            color: #ff6a00; // Se vuelve naranja al pasar el ratón
+        }
+
+        &:focus {
+            outline: none;
+        }
+    }
+
     &__btn {
         width: 100%;
         background-color: #ff6a00;
