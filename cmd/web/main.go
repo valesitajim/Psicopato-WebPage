@@ -52,9 +52,10 @@ func main() {
 	http.HandleFunc("/login", userHandler.ShowLogin)
 	http.HandleFunc("/registro", userHandler.ShowRegister)
 
-	// --- ARCHIVOS ESTÁTICOS --- //
-	// Importante: Asegúrate de que esta ruta sea exacta
-	fs := http.FileServer(http.Dir("./ui/static/"))
+
+		// Usando la raíz del proyecto directamente (funciona si siempre
+	// ejecutas desde la raíz con go run ./cmd/web/main.go)
+	fs := http.FileServer(http.Dir("ui/static")) // Sin el ./  ni / al final
 	http.Handle("/static/", http.StripPrefix("/static/", fs))
 
 	log.Println("Servidor escuchando en http://localhost:8080")

@@ -26,11 +26,11 @@ func NewUserHandler(tmplLogin *template.Template, tmplRegister *template.Templat
 
 //Métodos de visualización
 func (h *UserHandler) ShowLogin(w http.ResponseWriter, r *http.Request) {
-    h.tmplLogin.Execute(w, nil)
+    h.tmplLogin.ExecuteTemplate(w, "login.html", nil)
 }
 
 func (h *UserHandler) ShowRegister(w http.ResponseWriter, r *http.Request) {
-    h.tmplRegister.Execute(w, nil)
+    h.tmplRegister.ExecuteTemplate(w, "register.html", nil)
 }
 
 // SubmitForm procesa el registro de nuevos usuarios

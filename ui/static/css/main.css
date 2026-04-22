@@ -535,30 +535,18 @@ footer {
   max-width: 420px;
   overflow: hidden;
 }
-.auth-box__tabs {
-  display: flex;
+.auth-box__header {
+  padding: 15px;
+  text-align: right;
   border-bottom: 1px solid #eee;
 }
-.auth-box__tab {
-  flex: 1;
-  background: none;
-  border: none;
-  padding: 18px 0;
-  font-size: 1rem;
-  font-weight: 600;
-  color: #999;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  border-bottom: 3px solid transparent;
-}
-.auth-box__tab--active {
+.auth-box__link--switch {
+  font-size: 0.8rem;
   color: #ff6a00;
-  border-bottom-color: #ff6a00;
-  background-color: #fff;
+  text-decoration: none;
 }
-.auth-box__tab:hover:not(.auth-box__tab--active) {
-  color: #666;
-  background-color: #fdfdfd;
+.auth-box__link--switch:hover {
+  text-decoration: underline;
 }
 .auth-box__title {
   color: #333;
@@ -591,7 +579,7 @@ footer {
 
 .auth-form {
   padding: 30px;
-  display: none;
+  display: block;
 }
 .auth-form--active {
   display: block;

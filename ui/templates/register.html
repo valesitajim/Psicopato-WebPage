@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Cuenta - PATOS</title>
     <link rel="icon" href="/static/img/favicon.png" type="image/x-icon"> <!--icono de la página-->
-    <title>Acceso - PATOS</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Syncopate:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/static/css/main.css">
 </head>
-
 <body class="auth-body">
 
     <header class="header__bar" style="justify-content: center;">
@@ -17,27 +16,31 @@
         </a>
     </header>
 
-    <div class="auth-box">
-        <div class="auth-box__header">
-            <a href="/login" class="auth-box__link--switch">¿Ya tienes cuenta? Entra aquí</a>
+    <main class="auth-page">
+        <div class="auth-box">
+            <div class="auth-box__header">
+                <a href="/login" class="auth-box__link--switch">¿Ya tienes cuenta? Entra aquí</a>
+            </div>
+            <form action="/procesar-registro" method="POST" class="auth-form auth-form--active">
+                <h1 class="auth-box__title">Únete a nosotros</h1>
+                <p class="auth-box__subtitle">Crea tu cuenta de forma rápida y segura.</p>
+
+                <div class="auth-form__group">
+                    <label class="auth-form__label">Nombre completo</label>
+                    <input type="text" name="nombre" class="auth-form__input" required> 
+                </div>
+                <div class="auth-form__group">
+                    <label class="auth-form__label">Correo electrónico</label>
+                    <input type="email" name="email" class="auth-form__input" required>
+                </div>
+                <div class="auth-form__group">
+                    <label class="auth-form__label">Contraseña</label>
+                    <input type="password" name="password" class="auth-form__input" required>
+                </div>
+                <button type="submit" class="auth-form__btn">Crear cuenta</button>
+            </form>
         </div>
-        <form action="/procesar-register" method="POST" class="auth-form auth-form--active">
-            <h1 class="auth-box__title">Crea tu cuenta</h1>
-            <div class="auth-form__group">
-                <label class="auth-form__label">Nombre</label>
-                <input type="text" name="nombre" class="auth-form__input" required>
-            </div>
-            <div class="auth-form__group">
-                <label class="auth-form__label">Email</label>
-                <input type="email" name="email" class="auth-form__input" required>
-            </div>
-            <div class="auth-form__group">
-                <label class="auth-form__label">Contraseña</label>
-                <input type="password" name="password" class="auth-form__input" required>
-            </div>
-            <button type="submit" class="auth-form__btn">Registrarme</button>
-        </form>
-    </div>
+    </main>
 
 </body>
 </html>
