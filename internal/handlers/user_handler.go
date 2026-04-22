@@ -3,8 +3,8 @@ package handlers
 import (
 	"fmt"
 	"html/template"
-	"log"
 	"net/http"
+	"golang.org/x/crypto/bcrypt"
 
 	"TIENDAPATOS/internal/database"
 	"TIENDAPATOS/internal/models"
@@ -40,28 +40,28 @@ func (h *UserHandler) SubmitForm(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Método no permitido", http.StatusMethodNotAllowed)
 		return
 	}
+	r.ParseForm()
 
-	if err := r.ParseForm(); err != nil {
-		http.Error(w, "Formulario inválido", http.StatusBadRequest)
+	password := r.FormValue("password") // Cogemos la contraseña del HTML
+
+	// 1. CIFRAR LA CONTRASEÑA (Como pide tu profesor, coste 12)
+	hash, err := bcrypt.GenerateFromPassword([]byte(password), 12)
+	if err != nil {
+		http.Error(w, "Error interno del servidor", http.StatusInternalServerError)
 		return
 	}
 
+	// 2. Crear el usuario con el Hash, NUNCA con la contraseña real
 	user := models.User{
-		Name:  r.FormValue("name"), // Asegúrate de que coincida con name="name" en tu HTML
-		Email: r.FormValue("email"),
+		Name:         r.FormValue("nombre"),
+		Email:        r.FormValue("email"),
+		PasswordHash: string(hash), // Guardamos el resumen
 	}
 
-	if user.Name == "" || user.Email == "" {
-		http.Error(w, "Nombre y email son obligatorios", http.StatusBadRequest)
-		return
-	}
-
-	// Usamos AppendUser (o SaveUser según lo tengas en tu database)
 	if err := h.store.AppendUser(user); err != nil {
 		http.Error(w, "No se pudo guardar el usuario", http.StatusInternalServerError)
 		return
 	}
-
 	fmt.Fprintf(w, "¡Usuario %s guardado correctamente!", user.Name)
 }
 
@@ -71,12 +71,27 @@ func (h *UserHandler) Login(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Método no permitido", http.StatusMethodNotAllowed)
 		return
 	}
+	r.ParseForm()
 
 	email := r.FormValue("email")
 	password := r.FormValue("password")
 
-	// USAMOS las variables para que Go no dé error
-	log.Printf("Intento de login: Email=%s, Password=%s", email, password)
-	
-	fmt.Fprintf(w, "¡Bienvenido de nuevo! Has iniciado sesión con: %s", email)
+	// 1. Buscar al usuario en la base de datos
+	user, err := h.store.GetUserByEmail(email)
+	if err != nil {
+		// REGLA DEL PROFESOR: Si no existe, mensaje genérico
+		http.Error(w, "Credenciales incorrectas", http.StatusUnauthorized)
+		return
+	}
+
+	// 2. VERIFICAR CONTRASEÑA: Comparamos el hash guardado con lo que el usuario ha escrito
+	err = bcrypt.CompareHashAndPassword([]byte(user.PasswordHash), []byte(password))
+	if err != nil {
+		// REGLA DEL PROFESOR: Si la contraseña está mal, mensaje genérico idéntico
+		http.Error(w, "Credenciales incorrectas", http.StatusUnauthorized)
+		return
+	}
+
+	// ¡ÉXITO!
+	fmt.Fprintf(w, "¡Bienvenido de nuevo, %s! Has iniciado sesión", user.Name)
 }
