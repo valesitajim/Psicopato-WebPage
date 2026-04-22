@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"fmt"
 	"html/template"
 	"net/http"
 	"golang.org/x/crypto/bcrypt"
@@ -57,11 +56,15 @@ func (h *UserHandler) SubmitForm(w http.ResponseWriter, r *http.Request) {
 		PasswordHash: string(hash), // Guardamos el resumen
 	}
 
+	// Si hay error al guardar:
 	if err := h.store.AppendUser(user); err != nil {
-		http.Error(w, "No se pudo guardar el usuario", http.StatusInternalServerError)
+		// Redirigimos al registro con un aviso de error
+		http.Redirect(w, r, "/registro?error=servidor", http.StatusSeeOther)
 		return
 	}
-	fmt.Fprintf(w, "¡Usuario %s guardado correctamente!", user.Name)
+	// SI TODO VA BIEN: Redirigimos al login con mensaje de éxito
+	http.Redirect(w, r, "/login?exito=registro", http.StatusSeeOther)
+
 }
 
 // Login procesa el intento de entrada
@@ -76,21 +79,19 @@ func (h *UserHandler) Login(w http.ResponseWriter, r *http.Request) {
 	password := r.FormValue("password")
 
 	// 1. Buscar al usuario en la base de datos
+	// Si el usuario no existe o la contraseña está mal:
 	user, err := h.store.GetUserByEmail(email)
 	if err != nil {
-		// REGLA DEL PROFESOR: Si no existe, mensaje genérico
-		http.Error(w, "Credenciales incorrectas", http.StatusUnauthorized)
+		http.Redirect(w, r, "/login?error=credenciales", http.StatusSeeOther)
 		return
 	}
 
-	// 2. VERIFICAR CONTRASEÑA: Comparamos el hash guardado con lo que el usuario ha escrito
 	err = bcrypt.CompareHashAndPassword([]byte(user.PasswordHash), []byte(password))
 	if err != nil {
-		// REGLA DEL PROFESOR: Si la contraseña está mal, mensaje genérico idéntico
-		http.Error(w, "Credenciales incorrectas", http.StatusUnauthorized)
+		http.Redirect(w, r, "/login?error=credenciales", http.StatusSeeOther)
 		return
 	}
 
-	// ¡ÉXITO!
-	fmt.Fprintf(w, "¡Bienvenido de nuevo, %s! Has iniciado sesión", user.Name)
+	// SI EL LOGIN ES CORRECTO: Redirigimos a la página principal
+	http.Redirect(w, r, "/?exito=login", http.StatusSeeOther)
 }

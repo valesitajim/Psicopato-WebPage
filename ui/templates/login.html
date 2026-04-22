@@ -38,5 +38,40 @@
         </div>
     </main>
 
+    <div id="toast-notif" class="toast"></div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const toast = document.getElementById('toast-notif');
+            
+            let message = "";
+            let type = "";
+
+            // Revisar qué mensaje viene en la URL
+            if (urlParams.has('exito')) {
+                type = "toast--success";
+                if (urlParams.get('exito') === 'registro') message = "¡Cuenta creada! Ya puedes iniciar sesión.";
+                if (urlParams.get('exito') === 'login') message = "¡Bienvenido de nuevo a la tienda!";
+            } else if (urlParams.has('error')) {
+                type = "toast--error";
+                if (urlParams.get('error') === 'credenciales') message = "Credenciales incorrectas. Inténtalo de nuevo.";
+                if (urlParams.get('error') === 'servidor') message = "Hubo un error al procesar tu solicitud.";
+            }
+
+            // Si hay mensaje, mostrar el pop-up y ocultarlo a los 4 segundos
+            if (message !== "") {
+                toast.textContent = message;
+                toast.classList.add(type);
+                toast.classList.add('toast--show');
+
+                setTimeout(() => {
+                    toast.classList.remove('toast--show');
+                    // Opcional: Limpiar la URL para que no vuelva a salir al recargar
+                    window.history.replaceState({}, document.title, window.location.pathname);
+                }, 4000);
+            }
+        });
+    </script>
 </body>
 </html>

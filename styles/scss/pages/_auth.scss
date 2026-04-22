@@ -162,6 +162,35 @@
         }
     }
 }
+// Estilos del Pop-up (Toast)
+.toast {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    padding: 15px 25px;
+    border-radius: 8px;
+    color: white;
+    font-weight: 600;
+    font-size: 0.95rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 1000;
+
+    &--show {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    &--success {
+        background-color: #10b981; // Verde elegante
+    }
+
+    &--error {
+        background-color: #ef4444; // Rojo alerta
+    }
+}
 
 // Animación suave al cambiar de pestaña
 @keyframes fadeIn {
