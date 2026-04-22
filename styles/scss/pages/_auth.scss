@@ -20,33 +20,17 @@
     max-width: 420px;
     overflow: hidden;
 
-    &__tabs {
-        display: flex;
+    &__header {
+        padding: 15px;
+        text-align: right;
         border-bottom: 1px solid #eee;
     }
-
-    &__tab {
-        flex: 1;
-        background: none;
-        border: none;
-        padding: 18px 0;
-        font-size: 1rem;
-        font-weight: 600;
-        color: #999;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        border-bottom: 3px solid transparent;
-
-        &--active {
-            color: #ff6a00;
-            border-bottom-color: #ff6a00;
-            background-color: #fff;
-        }
-
-        &:hover:not(&--active) {
-            color: #666;
-            background-color: #fdfdfd;
-        }
+    
+    &__link--switch {
+        font-size: 0.8rem;
+        color: #ff6a00;
+        text-decoration: none;
+        &:hover { text-decoration: underline; }
     }
 
     &__title {
@@ -86,7 +70,7 @@
 // Formularios
 .auth-form {
     padding: 30px;
-    display: none; // Ocultos por defecto
+    display: block;
 
     &--active {
         display: block; // Solo se muestra el activo

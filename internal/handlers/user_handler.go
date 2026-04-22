@@ -11,27 +11,26 @@ import (
 )
 
 type UserHandler struct {
-	tmpl  *template.Template
+	tmplLogin  *template.Template
+	tmplRegister *template.Template
 	store *database.UserStore
 }
 
-func NewUserHandler(tmpl *template.Template, store *database.UserStore) *UserHandler {
+func NewUserHandler(tmplLogin *template.Template, tmplRegister *template.Template, store *database.UserStore) *UserHandler {
 	return &UserHandler{
-		tmpl:  tmpl,
+		tmplLogin:  tmplLogin,
+		tmplRegister: tmplRegister,
 		store: store,
 	}
 }
 
-// ShowForm muestra el formulario de login/registro
-func (h *UserHandler) ShowForm(w http.ResponseWriter, r *http.Request) {
-	if r.Method != http.MethodGet {
-		http.Error(w, "Método no permitido", http.StatusMethodNotAllowed)
-		return
-	}
+//Métodos de visualización
+func (h *UserHandler) ShowLogin(w http.ResponseWriter, r *http.Request) {
+    h.tmplLogin.Execute(w, nil)
+}
 
-	if err := h.tmpl.Execute(w, nil); err != nil {
-		http.Error(w, "Error renderizando plantilla", http.StatusInternalServerError)
-	}
+func (h *UserHandler) ShowRegister(w http.ResponseWriter, r *http.Request) {
+    h.tmplRegister.Execute(w, nil)
 }
 
 // SubmitForm procesa el registro de nuevos usuarios

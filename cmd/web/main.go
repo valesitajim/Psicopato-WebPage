@@ -12,13 +12,21 @@ import (
 func main() {
 	// 1. Configuración
 	store := database.NewUserStore("api/users.jsonl")
-	
-	// Cargamos el template (ahora compartido para login y registro)
-	tmplAuth, err := template.ParseFiles("ui/templates/user_form.html")
+
+	// 2. Cargamos las plantillas por separado
+	tmplLogin, err := template.ParseFiles("ui/templates/login.html")
 	if err != nil {
-		log.Fatalf("error cargando template de autenticación: %v", err)
+		log.Fatalf("error cargando template de login: %v", err)
 	}
-	userHandler := handlers.NewUserHandler(tmplAuth, store)
+
+	tmplRegister, err := template.ParseFiles("ui/templates/register.html")
+	if err != nil {
+		log.Fatalf("error cargando template de registro: %v", err)
+	}
+
+	// 3. Inicializamos el handler pasando ambas plantillas
+	// (Nota: Tendremos que actualizar el constructor NewUserHandler en el siguiente paso)
+	userHandler := handlers.NewUserHandler(tmplLogin, tmplRegister, store)
 
 	// --- RUTAS --- //
 
@@ -39,10 +47,10 @@ func main() {
 	})
 
 	// RUTAS DE USUARIO
-	http.HandleFunc("/registro", userHandler.ShowForm)          // Muestra el HTML
 	http.HandleFunc("/procesar-registro", userHandler.SubmitForm) // Guarda en JSONL
-	http.HandleFunc("/login", userHandler.ShowForm)
-	http.HandleFunc("/procesar-login", userHandler.Login)       // NUEVA: Procesa el inicio de sesión
+	http.HandleFunc("/procesar-login", userHandler.Login)         // Procesa el inicio de sesión
+	http.HandleFunc("/login", userHandler.ShowLogin)
+	http.HandleFunc("/registro", userHandler.ShowRegister)
 
 	// --- ARCHIVOS ESTÁTICOS --- //
 	// Importante: Asegúrate de que esta ruta sea exacta
