@@ -11,13 +11,19 @@
     &__images {
         display: flex;
         width: 100%;
+
+        picture {
+            width: 33.333%;
+            display: block; 
+        }
     }
 
     &__image { 
-        width: 33.333%;
+        width: 100%;
         height: auto;
         display: block;
         opacity: 0.8;
+        object-fit: cover;
     }
 
     &__content {

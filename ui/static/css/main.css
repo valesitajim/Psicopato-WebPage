@@ -14,6 +14,7 @@ html, body {
   max-width: 100%;
   margin: 0;
   padding: 0;
+  font-family: "Helvetica Neue", Arial, sans-serif;
 }
 
 /* 3. Layout (Estructura general) */
@@ -348,11 +349,17 @@ footer {
   display: flex;
   width: 100%;
 }
-.hero__image {
+.hero__images picture {
   width: 33.333%;
+  display: block;
+}
+.hero__image {
+  width: 100%;
   height: auto;
   display: block;
   opacity: 0.8;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .hero__content {
   position: absolute;

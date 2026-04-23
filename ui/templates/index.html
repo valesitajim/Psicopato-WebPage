@@ -21,7 +21,10 @@
         <div class="header__bar">
             
             <div class="header__logo-box">
-                <img src="/static/img/logo.png" alt="Logo de la marca" class="header__logo">
+                <picture>
+                    <source srcset="/static/img/logo-opt.avif" type="image/avif">
+                    <img src="/static/img/logo.png" alt="Logo de la marca" class="header__logo">
+                </picture>
             </div>
 
             <div class="header__action">
@@ -39,7 +42,10 @@
 
                 <div class="header__icons">
                     <div class="header__action">
-                        <img src="/static/img/perfil.png" alt="Perfil" class="header__icon header__icon--profile" id="btn-profile">
+                        <picture>
+                            <source srcset="/static/img/perfil-opt.avif" type="image/avif">
+                            <img src="/static/img/perfil.png" alt="Perfil" class="header__icon header__icon--profile" id="btn-profile">
+                        </picture>
                         <div class="header__dropdown" id="drop-profile">
                             <p><strong>¡Hola!</strong></p>
                             <a href="/login" class="header__dropdown-link">Iniciar sesión</a>
@@ -48,14 +54,20 @@
                     </div>
 
                     <div class="header__action">
-                        <img src="/static/img/favoritos.png" alt="Favoritos" class="header__icon header__icon--favorites" id="btn-fav">
+                        <picture>
+                            <source srcset="/static/img/favoritos-opt.avif" type="image/avif">
+                            <img src="/static/img/favoritos.png" alt="Favoritos" class="header__icon header__icon--favorites" id="btn-fav">
+                        </picture>
                         <div class="header__dropdown" id="drop-fav">
                             <p>Aún no tienes favoritos. ¡Explora la tienda!</p>
                         </div>
                     </div>
 
                     <div class="header__action">
-                        <img src="/static/img/cesta.png" alt="Carrito de compras" class="header__icon header__icon--cart" id="btn-cart">
+                        <picture>
+                            <source srcset="/static/img/cesta-opt.avif" type="image/avif">
+                            <img src="/static/img/cesta.png" alt="Carrito de compras" class="header__icon header__icon--cart" id="btn-cart">
+                        </picture>
                         <div class="header__dropdown" id="drop-cart">
                             <p>Tu carrito está vacío.</p>
                             <a href="#" class="header__dropdown-link">Ir a pagar</a>
@@ -68,9 +80,20 @@
     <section class="hero">
         
         <div class="hero__images">
-            <img src="/static/img/modelo1.png" alt="Modelo 1" fetchpriority="high" class="hero__image">
-            <img src="/static/img/modelo2.png" alt="Modelo 2" fetchpriority="high" class="hero__image">
-            <img src="/static/img/modelo3.png" alt="Modelo 3" fetchpriority="high" class="hero__image">
+            <picture>
+                <source srcset="/static/img/modelo1.avif" type="image/avif">
+                <img src="/static/img/modelo1.png" alt="Modelo 1" fetchpriority="high" class="hero__image">
+            </picture>
+
+            <picture>
+                <source srcset="/static/img/modelo2.avif" type="image/avif">
+                <img src="/static/img/modelo2.png" alt="Modelo 2" fetchpriority="high" class="hero__image">
+            </picture>
+
+            <picture>
+                <source srcset="/static/img/modelo3.avif" type="image/avif">
+                <img src="/static/img/modelo3.png" alt="Modelo 3" fetchpriority="high" class="hero__image">
+            </picture>
         </div>
 
         <div class="hero__content">
