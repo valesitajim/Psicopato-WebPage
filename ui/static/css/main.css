@@ -2,15 +2,18 @@
 /* 1. Abstracts (Variables y Mixins primero) */
 /* --- _variables.scss --- */
 /* 2. Base (El reseteo) */
-/* --- RESETEO BÁSICO --- */
-* {
+/* 1. Reseteo universal del modelo de caja*/
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* 2. Prohibido hacer scroll horizontal de forma natural */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  font-family: "Helvetica Neue", Arial, sans-serif;
-} /* Selector universal, aplicamos fuentes globalmente */
-html {
-  font-size: 1rem; /* Establece la base estándar de 16px recomendada*/
 }
 
 /* 3. Layout (Estructura general) */
@@ -36,19 +39,13 @@ html {
   .header__bar {
     height: auto;
     flex-wrap: wrap;
-    padding: 10px 20px;
-    gap: 15px;
-  }
-}
-@media (max-width: 600px) {
-  .header__bar {
-    justify-content: space-between;
+    padding: 10px 15px;
+    gap: 10px;
   }
 }
 .header__logo-box {
-  background-color: #ffffff;
   height: 100%;
-  padding: 0 20px;
+  padding: 0 10px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -57,7 +54,7 @@ html {
 @media (max-width: 900px) {
   .header__logo-box {
     height: 60px;
-    padding: 0 15px;
+    padding: 0 5px;
   }
 }
 .header__logo {
@@ -86,9 +83,19 @@ html {
   font-weight: bold;
   font-size: 0.875em;
   border-radius: 4px;
+  text-align: center;
   white-space: nowrap;
 }
-@media (max-width: 600px) {
+@media (max-width: 900px) {
+  .header__app-btn {
+    padding: 6px 10px;
+    font-size: 0.65em;
+  }
+}
+.header__app-btn {
+  /* Escondemos el botón en móviles diminutos para salvar los iconos */
+}
+@media (max-width: 400px) {
   .header__app-btn {
     display: none;
   }
@@ -109,15 +116,14 @@ html {
   display: flex;
   justify-content: center;
   padding: 0 20px;
+  box-sizing: border-box;
 }
 @media (max-width: 900px) {
   .header__search {
-    order: 5;
-    width: 100%;
-    margin-top: 5px;
+    padding: 0;
   }
 }
-.header__search-input { /* Se compila como .header__search-input */
+.header__search-input {
   width: 100%;
   max-width: 650px;
   padding: 12px 20px;
@@ -127,6 +133,7 @@ html {
   color: #333333;
   outline: none;
   font-size: 0.9375em;
+  box-sizing: border-box;
 }
 .header__search-input::-moz-placeholder {
   color: #999999;
@@ -136,7 +143,8 @@ html {
 }
 @media (max-width: 900px) {
   .header__search-input {
-    width: 100%;
+    padding: 8px 12px;
+    font-size: 0.8em;
   }
 }
 .header__icons {
@@ -151,9 +159,15 @@ html {
 }
 @media (max-width: 600px) {
   .header__icons {
-    gap: 15px;
+    gap: 10px;
   }
 }
+@media (max-width: 380px) {
+  .header__icons {
+    gap: 5px;
+  }
+}
+.header__icons { /* 👈 Para móviles muy pequeños, los juntamos más */ }
 .header__icon {
   cursor: pointer;
   transition: transform 0.2s;
@@ -167,18 +181,31 @@ html {
 }
 @media (max-width: 600px) {
   .header__icon--profile {
-    width: 32px;
-    height: 32px;
+    width: 30px;
+    height: 30px;
   }
 }
+@media (max-width: 380px) {
+  .header__icon--profile {
+    width: 24px;
+    height: 24px;
+  }
+}
+.header__icon--profile { /* 👈 Aún más pequeños */ }
 .header__icon--favorites {
   width: 62px;
   height: 62px;
 }
 @media (max-width: 600px) {
   .header__icon--favorites {
-    width: 38px;
-    height: 38px;
+    width: 35px;
+    height: 35px;
+  }
+}
+@media (max-width: 380px) {
+  .header__icon--favorites {
+    width: 28px;
+    height: 28px;
   }
 }
 .header__icon--cart {
@@ -187,11 +214,17 @@ html {
 }
 @media (max-width: 600px) {
   .header__icon--cart {
-    width: 28px;
-    height: 28px;
+    width: 26px;
+    height: 26px;
   }
 }
-.header__action { /*decirle a CSS que las cajitas (.header__dropdown) deben flotar justo debajo de su padre (.header__action) y que, por defecto, deben ser invisibles.*/
+@media (max-width: 380px) {
+  .header__icon--cart {
+    width: 20px;
+    height: 20px;
+  }
+}
+.header__action {
   position: relative; /* Convierte a este contenedor en el "ancla" */
   display: flex; /* Mantiene el icono perfectamente alineado */
   align-items: center;
@@ -206,7 +239,7 @@ html {
   min-width: 220px;
   padding: 15px;
   border-radius: 8px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15); /* Sombra elegante */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
   z-index: 200;
   /* Magia de invisibilidad y animación */
   opacity: 0;
@@ -219,7 +252,9 @@ html {
   margin-bottom: 10px;
   color: #999999;
 }
-
+.header__dropdown {
+  /* Esta clase se la pondremos con JavaScript al hacer clic */
+}
 .header__dropdown--active {
   opacity: 1;
   visibility: visible;
@@ -245,17 +280,35 @@ footer {
   color: #fff;
   text-align: center;
   padding: 80px 20px;
+  /* En móvil, reducimos el enorme espacio naranja de arriba y abajo */
+}
+@media (max-width: 600px) {
+  footer {
+    padding: 40px 15px;
+  }
 }
 
 .footer__content .footer__title {
   font-size: 1.75em;
   margin-bottom: 15px;
+  /* Título más pequeño en móvil */
+}
+@media (max-width: 600px) {
+  .footer__content .footer__title {
+    font-size: 1.3em;
+  }
 }
 
 .footer__content .footer__text {
   font-size: 1em;
   margin-bottom: 30px;
   color: #fff;
+  /* Texto más pequeño en móvil */
+}
+@media (max-width: 600px) {
+  .footer__content .footer__text {
+    font-size: 0.85em;
+  }
 }
 
 .footer__link {
@@ -267,6 +320,14 @@ footer {
   font-weight: bold;
   text-transform: uppercase;
   transition: opacity 0.3s;
+  display: inline-block;
+  /* Botón más compacto en móvil */
+}
+@media (max-width: 600px) {
+  .footer__link {
+    padding: 10px 25px;
+    font-size: 0.85em;
+  }
 }
 
 .footer__link:hover {
@@ -278,8 +339,10 @@ footer {
 .hero {
   position: relative;
   width: 100%;
-  height: auto;
   display: flex;
+  justify-content: center;
+  align-items: center; /* Centra el texto justo en el medio */
+  overflow: hidden;
 }
 .hero__images {
   display: flex;
@@ -289,15 +352,17 @@ footer {
   width: 33.333%;
   height: auto;
   display: block;
+  opacity: 0.8;
 }
 .hero__content {
   position: absolute;
-  bottom: 50px;
   width: 100%;
   text-align: center;
   display: flex;
   flex-direction: column;
   z-index: 10;
+  padding: 0 20px;
+  box-sizing: border-box;
 }
 .hero__title {
   font-family: "Horizon", sans-serif;
@@ -305,11 +370,20 @@ footer {
   margin: 0;
   line-height: 1.1;
   text-transform: uppercase;
-  text-shadow: 2px 2px 15px rgba(0, 0, 0, 0.7);
+  text-shadow: 2px 2px 15px rgba(0, 0, 0, 0.9);
+  overflow-wrap: break-word;
+}
+@media (max-width: 900px) {
+  .hero__title {
+    font-size: 2.5rem;
+  }
+}
+.hero__title {
+  /* Hacemos la letra más pequeña en móvil para que quepa bien dentro de las fotos */
 }
 @media (max-width: 600px) {
   .hero__title {
-    font-size: 2.2rem;
+    font-size: 1.3rem;
   }
 }
 .hero__text--pastel {
@@ -326,11 +400,13 @@ footer {
   padding: 80px 40px;
   background-color: #ffffff;
   width: 100%;
+  box-sizing: border-box; /* Para que el padding no sume al ancho total */
 }
 @media (max-width: 900px) {
   .benefits {
     flex-wrap: wrap;
     gap: 20px;
+    padding: 40px 20px;
   }
 }
 .benefits__item {
@@ -341,6 +417,7 @@ footer {
   justify-content: center;
   text-align: center;
   border-radius: 5px;
+  box-sizing: border-box;
 }
 @media (max-width: 900px) {
   .benefits__item {
@@ -366,6 +443,21 @@ footer {
 }
 
 /* 1. Abstracts (Variables y Mixins primero) */
+@media (max-width: 900px) {
+  .category {
+    flex-direction: column;
+    gap: 40px;
+    padding: 40px 20px;
+  }
+}
+.category {
+  /*quitamos márgenes laterales para ganar espacio */
+}
+@media (max-width: 400px) {
+  .category {
+    padding: 20px 10px;
+  }
+}
 .category {
   display: flex;
   width: 100%;
@@ -373,7 +465,8 @@ footer {
   gap: 50px;
   background-color: #ffffff;
   align-items: stretch;
-  /* Quitamos el subrayado feo por defecto de los links azules */
+  box-sizing: border-box;
+  /* Quitamos el subrayado por defecto de los links azules */
 }
 .category .category__link {
   text-decoration: none;
@@ -390,6 +483,12 @@ footer {
 .category--man .category__content {
   margin-left: 70px;
 }
+@media (max-width: 900px) {
+  .category--man .category__content {
+    margin-left: 0;
+  }
+}
+.category--man .category__content { /* En móvil no necesitamos ese margen izquierdo gigante */ }
 .category__image {
   flex: 1;
   position: relative;
@@ -399,6 +498,11 @@ footer {
   .category__image {
     width: 100%;
     height: 500px;
+  }
+}
+@media (max-width: 600px) {
+  .category__image {
+    height: 300px; /* La foto un poco más bajita en móviles pequeños */
   }
 }
 .category__img {
@@ -417,6 +521,7 @@ footer {
   flex: 1;
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
 }
 @media (max-width: 900px) {
   .category__content {
@@ -429,10 +534,17 @@ footer {
   color: #ff6a00;
   margin-bottom: 40px;
   font-weight: normal;
+  overflow-wrap: break-word; /* Permite que el texto se divida en varias líneas si es necesario */
 }
 @media (max-width: 600px) {
   .category__title {
     font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+}
+@media (max-width: 380px) {
+  .category__title {
+    font-size: 1.8rem; /* Letra más pequeña para el móvil mini */
   }
 }
 .category__columns {
@@ -448,6 +560,12 @@ footer {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+@media (max-width: 600px) {
+  .category__columns {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+}
 .category__column-title {
   color: #ff6a00;
   font-size: 1em;
@@ -455,6 +573,7 @@ footer {
   text-transform: uppercase;
   font-family: "Helvetica Neue", Arial, sans-serif;
   letter-spacing: 1px;
+  overflow-wrap: break-word;
 }
 .category__list {
   list-style-type: none;
@@ -467,6 +586,7 @@ footer {
   margin-bottom: 12px;
   cursor: pointer;
   transition: color 0.2s;
+  overflow-wrap: break-word;
 }
 .category__item:hover {
   color: #ff6a00;

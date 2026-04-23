@@ -6,10 +6,12 @@
     padding: 80px 40px;
     background-color: $color-fondo;
     width: 100%;
+    box-sizing: border-box;/* Para que el padding no sume al ancho total */
 
     @media (max-width: 900px) {
         flex-wrap: wrap;
         gap: 20px;
+        padding: 40px 20px;
     }
 
     &__item {
@@ -20,6 +22,7 @@
         justify-content: center;
         text-align: center;
         border-radius: 5px;
+        box-sizing: border-box;
 
         @media (max-width: 900px) { width: 48%; }
         @media (max-width: 600px) { width: 100%; }

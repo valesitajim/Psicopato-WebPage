@@ -3,8 +3,10 @@
 .hero {
     position: relative;
     width: 100%;
-    height: auto;
     display: flex;
+    justify-content: center;
+    align-items: center; /* Centra el texto justo en el medio */
+    overflow: hidden;
 
     &__images {
         display: flex;
@@ -15,16 +17,18 @@
         width: 33.333%;
         height: auto;
         display: block;
+        opacity: 0.8;
     }
 
     &__content {
         position: absolute;
-        bottom: 50px;
         width: 100%;
         text-align: center;
         display: flex;
         flex-direction: column;
         z-index: 10;
+        padding: 0 20px;
+        box-sizing: border-box;
     }
 
     &__title {
@@ -33,9 +37,12 @@
         margin: 0;
         line-height: 1.1;
         text-transform: uppercase;
-        text-shadow: 2px 2px 15px rgba(0,0,0,0.7);
+        text-shadow: 2px 2px 15px rgba(0,0,0,0.9);
+        overflow-wrap: break-word;
 
-        @media (max-width: 600px) { font-size: 2.2rem; }
+        @media (max-width: 900px) { font-size: 2.5rem; }
+        /* Hacemos la letra más pequeña en móvil para que quepa bien dentro de las fotos */
+        @media (max-width: 600px) { font-size: 1.3rem; } 
     }
 
     &__text {

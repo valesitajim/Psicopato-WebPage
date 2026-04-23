@@ -20,24 +20,19 @@
         @media (max-width: 900px) {
             height: auto;
             flex-wrap: wrap;
-            padding: 10px 20px;
-            gap: 15px;
-        }
-
-        @media (max-width: 600px) {
-            justify-content: space-between;
+            padding: 10px 15px;
+            gap: 10px;
         }
     }
 
     &__logo-box {
-        background-color: $color-fondo;
         height: 100%;
-        padding: 0 20px;
+        padding: 0 10px;
         @include flex-centrado; /* Usamos el Mixin */
 
         @media (max-width: 900px) {
             height: 60px;
-            padding: 0 15px;
+            padding: 0 5px;
         }
     }
 
@@ -65,9 +60,17 @@
         font-weight: bold;
         font-size: 0.875em;
         border-radius: 4px;
+        text-align: center;
         white-space: nowrap;
 
-        @media (max-width: 600px) { display: none; }
+        @media (max-width: 900px) {
+            padding: 6px 10px;
+            font-size: 0.65em;
+        }
+        /* Escondemos el botón en móviles diminutos para salvar los iconos */
+        @media (max-width: 400px) { 
+            display: none; 
+        }
     }
 
     &__brand {
@@ -84,14 +87,13 @@
         display: flex;
         justify-content: center;
         padding: 0 20px;
+        box-sizing: border-box;
 
         @media (max-width: 900px) {
-            order: 5;
-            width: 100%;
-            margin-top: 5px;
+            padding: 0;
         }
 
-        &-input { /* Se compila como .header__search-input */
+        &-input { 
             width: 100%;
             max-width: 650px;
             padding: 12px 20px;
@@ -101,9 +103,13 @@
             color: $color-texto;
             outline: none;
             font-size: 0.9375em;
+            box-sizing: border-box;
 
             &::placeholder { color: $color-gris; }
-            @media (max-width: 900px) { width: 100%; }
+            @media (max-width: 900px) {
+                padding: 8px 12px;
+                font-size: 0.8em;
+            }
         }
     }
 
@@ -113,7 +119,8 @@
         align-items: center;
 
         @media (max-width: 900px) { padding-right: 0; }
-        @media (max-width: 600px) { gap: 15px; }
+        @media (max-width: 600px) { gap: 10px; }
+        @media (max-width: 380px) { gap: 5px; } /* 👈 Para móviles muy pequeños, los juntamos más */
     }
 
     &__icon {
@@ -124,19 +131,22 @@
 
         &--profile {
             width: 52px; height: 52px;
-            @media (max-width: 600px) { width: 32px; height: 32px; }
+            @media (max-width: 600px) { width: 30px; height: 30px; }
+            @media (max-width: 380px) { width: 24px; height: 24px; } /* 👈 Aún más pequeños */
         }
         &--favorites {
             width: 62px; height: 62px;
-            @media (max-width: 600px) { width: 38px; height: 38px; }
+            @media (max-width: 600px) { width: 35px; height: 35px; }
+            @media (max-width: 380px) { width: 28px; height: 28px; }
         }
         &--cart {
             width: 42px; height: 42px;
-            @media (max-width: 600px) { width: 28px; height: 28px; }
+            @media (max-width: 600px) { width: 26px; height: 26px; }
+            @media (max-width: 380px) { width: 20px; height: 20px; }
         }
     }
     
-    &__action {/*decirle a CSS que las cajitas (.header__dropdown) deben flotar justo debajo de su padre (.header__action) y que, por defecto, deben ser invisibles.*/
+    &__action {
         position: relative; /* Convierte a este contenedor en el "ancla" */
         display: flex;      /* Mantiene el icono perfectamente alineado */
         align-items: center;
@@ -152,7 +162,7 @@
         min-width: 220px;
         padding: 15px;
         border-radius: 8px;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.15); /* Sombra elegante */
+        box-shadow: 0 10px 25px rgba(0,0,0,0.15); 
         z-index: 200;
         
         /* Magia de invisibilidad y animación */

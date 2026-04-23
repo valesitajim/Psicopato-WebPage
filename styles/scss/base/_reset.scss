@@ -1,5 +1,13 @@
-/* --- RESETEO BÁSICO --- */
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Helvetica Neue', Arial, sans-serif; } /* Selector universal, aplicamos fuentes globalmente */
-html {
-    font-size: 1rem; /* Establece la base estándar de 16px recomendada*/
+/* 1. Reseteo universal del modelo de caja*/
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+/* 2. Prohibido hacer scroll horizontal de forma natural */
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
 }
