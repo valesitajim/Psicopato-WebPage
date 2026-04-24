@@ -25,7 +25,6 @@ func main() {
 	}
 
 	// 3. Inicializamos el handler pasando ambas plantillas
-	// (Nota: Tendremos que actualizar el constructor NewUserHandler en el siguiente paso)
 	userHandler := handlers.NewUserHandler(tmplLogin, tmplRegister, store)
 
 	// --- RUTAS --- //
@@ -53,8 +52,7 @@ func main() {
 	http.HandleFunc("/registro", userHandler.ShowRegister)
 
 
-		// Usando la raíz del proyecto directamente (funciona si siempre
-	// ejecutas desde la raíz con go run ./cmd/web/main.go)
+		// Usando la raíz del proyecto directamente 
 	fs := http.FileServer(http.Dir("ui/static")) // Sin el ./  ni / al final
 	http.Handle("/static/", http.StripPrefix("/static/", fs))
 

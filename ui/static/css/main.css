@@ -93,9 +93,7 @@ html, body {
     font-size: 0.65em;
   }
 }
-.header__app-btn {
-  /* Escondemos el botón en móviles diminutos para salvar los iconos */
-}
+
 @media (max-width: 400px) {
   .header__app-btn {
     display: none;
@@ -168,7 +166,7 @@ html, body {
     gap: 5px;
   }
 }
-.header__icons { /* 👈 Para móviles muy pequeños, los juntamos más */ }
+
 .header__icon {
   cursor: pointer;
   transition: transform 0.2s;
@@ -192,7 +190,7 @@ html, body {
     height: 24px;
   }
 }
-.header__icon--profile { /* 👈 Aún más pequeños */ }
+
 .header__icon--favorites {
   width: 62px;
   height: 62px;
@@ -253,9 +251,7 @@ html, body {
   margin-bottom: 10px;
   color: #999999;
 }
-.header__dropdown {
-  /* Esta clase se la pondremos con JavaScript al hacer clic */
-}
+
 .header__dropdown--active {
   opacity: 1;
   visibility: visible;
@@ -385,9 +381,7 @@ footer {
     font-size: 2.5rem;
   }
 }
-.hero__title {
-  /* Hacemos la letra más pequeña en móvil para que quepa bien dentro de las fotos */
-}
+
 @media (max-width: 600px) {
   .hero__title {
     font-size: 1.3rem;
@@ -457,9 +451,7 @@ footer {
     padding: 40px 20px;
   }
 }
-.category {
-  /*quitamos márgenes laterales para ganar espacio */
-}
+
 @media (max-width: 400px) {
   .category {
     padding: 20px 10px;
@@ -495,7 +487,7 @@ footer {
     margin-left: 0;
   }
 }
-.category--man .category__content { /* En móvil no necesitamos ese margen izquierdo gigante */ }
+
 .category__image {
   flex: 1;
   position: relative;

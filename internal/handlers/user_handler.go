@@ -42,14 +42,14 @@ func (h *UserHandler) SubmitForm(w http.ResponseWriter, r *http.Request) {
 
 	password := r.FormValue("password") // Cogemos la contraseña del HTML
 
-	// 1. CIFRAR LA CONTRASEÑA (Como pide tu profesor, coste 12)
+	//CIFRAR LA CONTRASEÑA 
 	hash, err := bcrypt.GenerateFromPassword([]byte(password), 12)
 	if err != nil {
 		http.Error(w, "Error interno del servidor", http.StatusInternalServerError)
 		return
 	}
 
-	// 2. Crear el usuario con el Hash, NUNCA con la contraseña real
+	//Crear el usuario con el Hash
 	user := models.User{
 		Name:         r.FormValue("nombre"),
 		Email:        r.FormValue("email"),
