@@ -65,6 +65,50 @@ func (h *UserHandler) SubmitForm(w http.ResponseWriter, r *http.Request) {
 	// SI TODO VA BIEN: Redirigimos al login con mensaje de éxito
 	http.Redirect(w, r, "/login?exito=registro", http.StatusSeeOther)
 
+	//COOKIES
+
+	//Crear la Cookie
+    cookie := &http.Cookie{
+        Name:     "sesion",
+        Value:    "usuario_autorizado", // nombre del usuario o un ID
+        Path:     "/",                  // Válida para toda la web
+        MaxAge:   3600,                 // Dura 1 hora (3600 segundos)
+        HttpOnly: true,                 // Seguridad: JS no puede leerla
+    }
+    
+    //Enviar al navegador
+    http.SetCookie(w, cookie)
+
+    //Responder al usuario o redirigirlo
+    w.Write([]byte("Formulario procesado y sesión iniciada"))
+
+}
+
+func zonaProtegida(w http.ResponseWriter, r *http.Request) {
+    // 1. Intentamos leer la cookie
+    cookie, err := r.Cookie("sesion")
+    
+    // 2. Si hay error (no existe la cookie), le denegamos el paso
+    if err == http.ErrNoCookie {
+        http.Error(w, "Acceso denegado: debes rellenar el formulario primero", http.StatusUnauthorized)
+        // Alternativa: redirigirle al formulario con http.Redirect(w, r, "/formulario", http.StatusSeeOther)
+        return
+    }
+
+    // 3. Si llega aquí, es que tiene la cookie. 
+    // Puedes leer el valor: cookie.Value
+    w.Write([]byte("¡Bienvenido a la zona protegida! Tu sesión es: " + cookie.Value))
+}
+
+func cerrarSesion(w http.ResponseWriter, _ *http.Request) {
+    cookie := &http.Cookie{
+        Name:   "sesion",
+        Value:  "",
+        Path:   "/",
+        MaxAge: -1, // Esto le dice al navegador: "¡Bórrala inmediatamente!"
+    }
+    http.SetCookie(w, cookie)
+    w.Write([]byte("Sesión cerrada correctamente"))
 }
 
 // Login procesa el intento de entrada
