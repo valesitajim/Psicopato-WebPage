@@ -11,6 +11,7 @@ import (
 
 func main() {
 	//Configuración
+	mux := http.NewServeMux()
 	store := database.NewUserStore("api/users.jsonl")
 
 	// Cargamos todos los .html de la carpeta templates
@@ -50,6 +51,13 @@ func main() {
 	http.HandleFunc("/procesar-registro", userHandler.SubmitForm) // Guarda en JSONL
 	http.HandleFunc("/procesar-login", userHandler.Login)         // Procesa el inicio de sesión
 	http.HandleFunc("/logout", userHandler.Logout) // Nueva ruta para cerrar sesión
+
+	//RUTAS DE LA API REST
+    mux.HandleFunc("GET /api/v1/usuarios", userHandler.AuthMiddleware(userHandler.ListarUsers)) 
+    mux.HandleFunc("POST /api/v1/usuarios", userHandler.AuthMiddleware(userHandler.CrearUser)) 
+    mux.HandleFunc("DELETE /api/v1/usuarios/{id}", userHandler.AuthMiddleware(userHandler.BorrarUser))
+    mux.HandleFunc("PUT /api/v1/usuarios/{id}", userHandler.AuthMiddleware(userHandler.ActualizarUser))
+	mux.HandleFunc("GET /api/v1/usuarios/{id}", userHandler.AuthMiddleware(userHandler.ObtenerUser))
 
 
 		// Usando la raíz del proyecto directamente 
