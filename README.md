@@ -57,5 +57,7 @@ go mod tidy
 ``bash
 go run ./cmd/web/main.go
 
+*"La documentación completa de la API REST para la conexión con el Frontend (Rutas, Códigos de Estado y Formatos JSON) se encuentra disponible en nuestro archivo de [Documentación de la API](API_DOCUMENTATION.md)"*.
+
 ## License 
 This project is licensed under the MIT License. Feel free to use, modify, and distribute it
