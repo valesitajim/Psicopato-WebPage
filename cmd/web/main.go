@@ -58,7 +58,9 @@ func main() {
     mux.HandleFunc("DELETE /api/v1/usuarios/{id}", userHandler.AuthMiddleware(userHandler.BorrarUser))
     mux.HandleFunc("PUT /api/v1/usuarios/{id}", userHandler.AuthMiddleware(userHandler.ActualizarUser))
 	mux.HandleFunc("GET /api/v1/usuarios/{id}", userHandler.AuthMiddleware(userHandler.ObtenerUser))
-
+	// Ruta para ver el panel de administración
+	// La protegemos con el AuthMiddleware para que solo entren usuarios logueados
+	mux.HandleFunc("GET /admin", userHandler.AuthMiddleware(userHandler.ShowAdmin))		
 
 		// Usando la raíz del proyecto directamente 
 	fs := http.FileServer(http.Dir("ui/static")) // Sin el ./  ni / al final

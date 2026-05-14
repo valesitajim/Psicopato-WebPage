@@ -1,0 +1,41 @@
+{{define "title"}}Panel de Administración - PATOS{{end}}
+
+{{define "content"}}
+<section class="admin-panel" style="padding: 50px 20px; max-width: 1000px; margin: 0 auto;">
+    <h2>Gestión de Usuarios (CRUD)</h2>
+    <p>Desde aquí puedes administrar las cuentas de la tienda.</p>
+
+    <button id="btn-nuevo-usuario" style="margin-bottom: 20px; padding: 10px; background-color: #ff6b00; color: white; border: none; cursor: pointer;">
+        + Añadir Nuevo Usuario
+    </button>
+
+    <table style="width: 100%; border-collapse: collapse; text-align: left;">
+        <thead>
+            <tr style="border-bottom: 2px solid #ccc;">
+                <th style="padding: 10px;">ID</th>
+                <th style="padding: 10px;">Nombre</th>
+                <th style="padding: 10px;">Email</th>
+                <th style="padding: 10px;">Rol</th>
+                <th style="padding: 10px;">Acciones</th>
+            </tr>
+        </thead>
+        <tbody id="tabla-usuarios">
+            </tbody>
+    </table>
+
+    <template id="molde-usuario">
+        <tr style="border-bottom: 1px solid #eee;">
+            <td class="user-id" style="padding: 10px;"></td>
+            <td class="user-nombre" style="padding: 10px;"></td>
+            <td class="user-email" style="padding: 10px;"></td>
+            <td class="user-rol" style="padding: 10px;"></td>
+            <td style="padding: 10px;">
+                <button class="btn-editar" style="padding: 5px 10px; cursor: pointer;">Editar</button>
+                <button class="btn-borrar" style="padding: 5px 10px; cursor: pointer; background-color: #dc3545; color: white; border: none;">Borrar</button>
+            </td>
+        </tr>
+    </template>
+</section>
+
+<script src="/static/js/admin.js"></script>
+{{end}}

@@ -27,6 +27,16 @@ func NewUserHandler(tmpl *template.Template, store *database.UserStore) *UserHan
 	}
 }
 
+// ShowAdmin renderiza la interfaz de administración
+func (h *UserHandler) ShowAdmin(w http.ResponseWriter, r *http.Request) {
+	// Usamos la lógica de renderizado que ya tenéis en el proyecto
+	// Asumo que vuestro sistema carga primero el layout y luego la página específica
+	err := h.render(w, r, "admin.html", nil) 
+	if err != nil {
+		http.Error(w, "Error al cargar la página de administración", http.StatusInternalServerError)
+	}
+}
+
 // Métodos de visualización
 func (h *UserHandler) ShowLogin(w http.ResponseWriter, r *http.Request) {
 	h.templates.ExecuteTemplate(w, "login.html", nil)
