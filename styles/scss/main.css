@@ -2,21 +2,15 @@
 /* 1. Abstracts (Variables y Mixins primero) */
 /* --- _variables.scss --- */
 /* 2. Base (El reseteo) */
-
-/* 1. Reseteo universal del modelo de caja*/
-*, *::before, *::after {
-  box-sizing: border-box;
-}
-
-/* 2. Prohibido hacer scroll horizontal de forma natural */
-html, body {
-  overflow-x: hidden;
-  width: 100%;
-  max-width: 100%;
+/* --- RESETEO BÁSICO --- */
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
   font-family: "Helvetica Neue", Arial, sans-serif;
-
+} /* Selector universal, aplicamos fuentes globalmente */
+html {
+  font-size: 1rem; /* Establece la base estándar de 16px recomendada*/
 }
 
 /* 3. Layout (Estructura general) */
@@ -36,23 +30,18 @@ html, body {
   align-items: center;
   justify-content: space-between;
   padding-right: 20px;
-  /* ¡Volvemos a dejar que se rompa en dos líneas para que respiren! */
 }
 @media (max-width: 900px) {
   .header__bar {
-
-    height: auto;
-    flex-wrap: wrap;
-
-    padding: 10px 15px;
+    height: 60px;
+    padding: 0 10px;
     gap: 10px;
   }
 }
 .header__logo-box {
-
+  background-color: #ffffff;
   height: 100%;
-  padding: 0 10px;
-
+  padding: 0 20px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -60,7 +49,7 @@ html, body {
 @media (max-width: 900px) {
   .header__logo-box {
     height: 60px;
-    padding: 0 5px;
+    padding: 0 15px;
   }
 }
 .header__logo {
@@ -96,14 +85,6 @@ html, body {
   .header__app-btn {
     padding: 6px 10px;
     font-size: 0.65em;
-  }
-}
-.header__app-btn {
-  /* Escondemos el botón en móviles diminutos para salvar los iconos */
-}
-@media (max-width: 400px) {
-  .header__app-btn {
-    display: none;
   }
 }
 .header__brand {
@@ -165,15 +146,9 @@ html, body {
 }
 @media (max-width: 600px) {
   .header__icons {
-    gap: 10px;
+    gap: 15px;
   }
 }
-@media (max-width: 380px) {
-  .header__icons {
-    gap: 5px;
-  }
-}
-.header__icons { /* 👈 Para móviles muy pequeños, los juntamos más */ }
 .header__icon {
   cursor: pointer;
   transition: transform 0.2s;
@@ -187,31 +162,18 @@ html, body {
 }
 @media (max-width: 600px) {
   .header__icon--profile {
-    width: 30px;
-    height: 30px;
+    width: 32px;
+    height: 32px;
   }
 }
-@media (max-width: 380px) {
-  .header__icon--profile {
-    width: 24px;
-    height: 24px;
-  }
-}
-.header__icon--profile { /* 👈 Aún más pequeños */ }
 .header__icon--favorites {
   width: 62px;
   height: 62px;
 }
 @media (max-width: 600px) {
   .header__icon--favorites {
-    width: 35px;
-    height: 35px;
-  }
-}
-@media (max-width: 380px) {
-  .header__icon--favorites {
-    width: 28px;
-    height: 28px;
+    width: 38px;
+    height: 38px;
   }
 }
 .header__icon--cart {
@@ -220,21 +182,13 @@ html, body {
 }
 @media (max-width: 600px) {
   .header__icon--cart {
-    width: 26px;
-    height: 26px;
-  }
-}
-@media (max-width: 380px) {
-  .header__icon--cart {
-    width: 20px;
-    height: 20px;
+    width: 28px;
+    height: 28px;
   }
 }
 .header__action {
-
-  position: relative; /* Convierte a este contenedor en el "ancla" */
-  display: flex; /* Mantiene el icono perfectamente alineado */
-
+  position: relative;
+  display: flex;
   align-items: center;
   cursor: pointer;
 }
@@ -259,11 +213,6 @@ html, body {
   margin-bottom: 10px;
   color: #999999;
 }
-
-.header__dropdown {
-  /* Esta clase se la pondremos con JavaScript al hacer clic */
-}
-
 .header__dropdown--active {
   opacity: 1;
   visibility: visible;
@@ -329,9 +278,7 @@ footer {
   font-weight: bold;
   text-transform: uppercase;
   transition: opacity 0.3s;
-
-  display: inline-block;
-
+  display: inline-block; /* Importante para que los márgenes funcionen bien */
   /* Botón más compacto en móvil */
 }
 @media (max-width: 600px) {
@@ -350,37 +297,26 @@ footer {
 .hero {
   position: relative;
   width: 100%;
+  height: auto;
   display: flex;
-  justify-content: center;
-  align-items: center; /* Centra el texto justo en el medio */
-  overflow: hidden;
 }
 .hero__images {
   display: flex;
   width: 100%;
-  /* Las fotos ya no están ancladas al fondo, ahora dictan el tamaño real de la caja */
-}
-.hero__images picture {
-  width: 33.333%;
-
-  display: block;
 }
 .hero__image {
-  width: 100%;
+  width: 33.333%;
   height: auto;
   display: block;
-  opacity: 0.8;
-  -o-object-fit: cover;
-     object-fit: cover;
 }
 .hero__content {
   position: absolute;
-
+  bottom: 50px;
   width: 100%;
   text-align: center;
+  display: flex;
+  flex-direction: column;
   z-index: 10;
-  padding: 0 20px;
-  box-sizing: border-box;
 }
 .hero__title {
   font-family: "Horizon", sans-serif;
@@ -388,20 +324,11 @@ footer {
   margin: 0;
   line-height: 1.1;
   text-transform: uppercase;
-  text-shadow: 2px 2px 15px rgba(0, 0, 0, 0.9);
-  overflow-wrap: break-word;
-}
-@media (max-width: 900px) {
-  .hero__title {
-    font-size: 2.5rem;
-  }
-}
-.hero__title {
-  /* Hacemos la letra más pequeña en móvil para que quepa bien dentro de las fotos */
+  text-shadow: 2px 2px 15px rgba(0, 0, 0, 0.7);
 }
 @media (max-width: 600px) {
   .hero__title {
-    font-size: 1.3rem;
+    font-size: 2.2rem;
   }
 }
 .hero__text--pastel {
@@ -418,17 +345,11 @@ footer {
   padding: 80px 40px;
   background-color: #ffffff;
   width: 100%;
-
-  box-sizing: border-box; /* Para que el padding no sume al ancho total */
-
 }
 @media (max-width: 900px) {
   .benefits {
     flex-wrap: wrap;
     gap: 20px;
-
-    padding: 40px 20px;
-
   }
 }
 .benefits__item {
@@ -439,9 +360,6 @@ footer {
   justify-content: center;
   text-align: center;
   border-radius: 5px;
-
-  box-sizing: border-box;
-
 }
 @media (max-width: 900px) {
   .benefits__item {
@@ -467,21 +385,6 @@ footer {
 }
 
 /* 1. Abstracts (Variables y Mixins primero) */
-@media (max-width: 900px) {
-  .category {
-    flex-direction: column;
-    gap: 40px;
-    padding: 40px 20px;
-  }
-}
-.category {
-  /*quitamos márgenes laterales para ganar espacio */
-}
-@media (max-width: 400px) {
-  .category {
-    padding: 20px 10px;
-  }
-}
 .category {
   display: flex;
   width: 100%;
@@ -489,16 +392,12 @@ footer {
   gap: 50px;
   background-color: #ffffff;
   align-items: stretch;
-
-  box-sizing: border-box;
-
-  /* Quitamos el subrayado por defecto de los links azules */
-
+  /* Quitamos el subrayado feo por defecto de los links azules */
 }
 .category .category__link {
   text-decoration: none;
-  color: inherit;
-  display: block;
+  color: inherit; /* Hereda el gris o naranja del category__item */
+  display: block; /* Hace que toda el área sea "clickeable", no solo las letras */
 }
 @media (max-width: 900px) {
   .category {
@@ -510,12 +409,6 @@ footer {
 .category--man .category__content {
   margin-left: 70px;
 }
-@media (max-width: 900px) {
-  .category--man .category__content {
-    margin-left: 0;
-  }
-}
-.category--man .category__content { /* En móvil no necesitamos ese margen izquierdo gigante */ }
 .category__image {
   flex: 1;
   position: relative;
@@ -525,11 +418,6 @@ footer {
   .category__image {
     width: 100%;
     height: 500px;
-  }
-}
-@media (max-width: 600px) {
-  .category__image {
-    height: 300px; /* La foto un poco más bajita en móviles pequeños */
   }
 }
 .category__img {
@@ -548,7 +436,6 @@ footer {
   flex: 1;
   display: flex;
   flex-direction: column;
-  box-sizing: border-box;
 }
 @media (max-width: 900px) {
   .category__content {
@@ -561,21 +448,10 @@ footer {
   color: #ff6a00;
   margin-bottom: 40px;
   font-weight: normal;
-
-  overflow-wrap: break-word; /* Permite que el texto se divida en varias líneas si es necesario */
-
 }
 @media (max-width: 600px) {
   .category__title {
     font-size: 2.5rem;
-    margin-bottom: 20px;
-  }
-}
-@media (max-width: 380px) {
-  .category__title {
-
-    font-size: 1.8rem; /* Letra más pequeña para el móvil mini */
-
   }
 }
 .category__columns {
@@ -591,13 +467,6 @@ footer {
     grid-template-columns: repeat(2, 1fr);
   }
 }
-
-@media (max-width: 600px) {
-  .category__columns {
-    grid-template-columns: 1fr;
-    gap: 30px;
-  }
-}
 .category__column-title {
   color: #ff6a00;
   font-size: 1em;
@@ -605,9 +474,6 @@ footer {
   text-transform: uppercase;
   font-family: "Helvetica Neue", Arial, sans-serif;
   letter-spacing: 1px;
-
-  overflow-wrap: break-word;
-
 }
 .category__list {
   list-style-type: none;
@@ -620,9 +486,6 @@ footer {
   margin-bottom: 12px;
   cursor: pointer;
   transition: color 0.2s;
-
-  overflow-wrap: break-word;
-
 }
 .category__item:hover {
   color: #ff6a00;
@@ -669,223 +532,4 @@ footer {
   font-weight: bold;
   text-transform: uppercase;
   font-family: "Helvetica Neue", Arial, sans-serif;
-}
-
-.auth-body {
-  background-color: #f9f9f9;
-}
-
-.auth-page {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: calc(100vh - 80px);
-  padding: 20px;
-}
-
-.auth-box {
-  background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-  width: 100%;
-  max-width: 420px;
-  overflow: hidden;
-}
-.auth-box__header {
-  padding: 15px;
-  text-align: right;
-  border-bottom: 1px solid #eee;
-}
-.auth-box__link--switch {
-  font-size: 0.8rem;
-  color: #ff6a00;
-  text-decoration: none;
-}
-.auth-box__link--switch:hover {
-  text-decoration: underline;
-}
-.auth-box__title {
-  color: #333;
-  font-family: "Playfair Display", serif;
-  margin-bottom: 8px;
-  font-size: 1.8rem;
-  text-align: center;
-}
-.auth-box__subtitle {
-  color: #666;
-  margin-bottom: 25px;
-  font-size: 0.9rem;
-  text-align: center;
-}
-.auth-box__link {
-  color: #ff6a00;
-  text-decoration: none;
-  font-weight: 600;
-  display: block;
-  text-align: center;
-  margin-top: 15px;
-}
-.auth-box__link:hover {
-  text-decoration: underline;
-}
-.auth-box__link--small {
-  font-size: 0.85rem;
-  font-weight: normal;
-}
-
-.auth-form {
-  padding: 30px;
-  display: block;
-}
-.auth-form--active {
-  display: block;
-  animation: fadeIn 0.4s ease;
-}
-.auth-form__group {
-  margin-bottom: 18px;
-}
-.auth-form__label {
-  display: block;
-  margin-bottom: 6px;
-  font-weight: 600;
-  color: #444;
-  font-size: 0.85rem;
-}
-.auth-form__input {
-  width: 100%;
-  padding: 12px 15px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 1rem;
-  color: #333;
-  transition: border-color 0.3s, box-shadow 0.3s;
-  box-sizing: border-box;
-}
-.auth-form__input:focus {
-  outline: none;
-  border-color: #ff6a00;
-  box-shadow: 0 0 0 3px #ffcc99;
-}
-.auth-form__password-wrapper {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-.auth-form__input[type=password], .auth-form__input[type=text] {
-  padding-right: 45px;
-}
-.auth-form__eye-btn {
-  position: absolute;
-  right: 12px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  transition: color 0.3s ease;
-}
-.auth-form__eye-btn:hover {
-  color: #ff6a00;
-}
-.auth-form__eye-btn:focus {
-  outline: none;
-}
-.auth-form__btn {
-  width: 100%;
-  background-color: #ff6a00;
-  color: white;
-  border: none;
-  padding: 14px;
-  border-radius: 4px;
-  font-size: 1rem;
-  font-weight: bold;
-  cursor: pointer;
-  margin-top: 10px;
-  transition: background-color 0.3s, transform 0.1s;
-}
-.auth-form__btn:hover {
-  background-color: #e65c00;
-}
-.auth-form__btn:active {
-  transform: scale(0.98);
-}
-
-.toast {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  padding: 15px 25px;
-  border-radius: 8px;
-  color: white;
-  font-weight: 600;
-  font-size: 0.95rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-  transform: translateY(100px);
-  opacity: 0;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  z-index: 1000;
-}
-.toast--show {
-  transform: translateY(0);
-  opacity: 1;
-}
-.toast--success {
-  background-color: #10b981;
-}
-.toast--error {
-  background-color: #ef4444;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(5px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-.profile-info {
-  background-color: #fafafa;
-  border: 1px solid #eaeaea;
-  border-radius: 8px;
-  padding: 20px;
-}
-.profile-info__item {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 15px;
-}
-.profile-info__item:last-child {
-  margin-bottom: 0;
-}
-.profile-info__label {
-  font-size: 0.75rem;
-  color: #888;
-  text-transform: uppercase;
-  letter-spacing: 0.8px;
-  margin-bottom: 4px;
-  font-weight: 700;
-}
-.profile-info__value {
-  font-size: 1.1rem;
-  color: #333;
-  font-weight: 500;
-  overflow-wrap: break-word;
-}
-
-.auth-form__btn--danger {
-  background-color: #ef4444;
-  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.2);
-}
-.auth-form__btn--danger:hover {
-  background-color: #dc2626;
-  box-shadow: 0 6px 20px rgba(239, 68, 68, 0.3);
-}
-.auth-form__btn--danger:active {
-  box-shadow: 0 2px 10px rgba(239, 68, 68, 0.2);
 }/*# sourceMappingURL=main.css.map */
