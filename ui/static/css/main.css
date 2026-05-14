@@ -2,6 +2,7 @@
 /* 1. Abstracts (Variables y Mixins primero) */
 /* --- _variables.scss --- */
 /* 2. Base (El reseteo) */
+<<<<<<< HEAD:ui/static/css/main.css
 /* 1. Reseteo universal del modelo de caja*/
 *, *::before, *::after {
   box-sizing: border-box;
@@ -15,6 +16,14 @@ html, body {
   margin: 0;
   padding: 0;
   font-family: "Helvetica Neue", Arial, sans-serif;
+=======
+/*Prohibido hacer scroll horizontal en toda la web */
+html, body {
+  overflow-x: hidden !important;
+  max-width: 100vw;
+  margin: 0;
+  padding: 0;
+>>>>>>> c4977ba5911efce1fb6f2a07dfe71cd69e3ba958:styles/css/main.css
 }
 
 /* 3. Layout (Estructura general) */
@@ -34,23 +43,33 @@ html, body {
   align-items: center;
   justify-content: space-between;
   padding-right: 20px;
-  /* ¡La regla de tablet se mete directamente aquí! */
+  /* ¡Volvemos a dejar que se rompa en dos líneas para que respiren! */
 }
 @media (max-width: 900px) {
   .header__bar {
+<<<<<<< HEAD:ui/static/css/main.css
     height: auto;
     flex-wrap: wrap;
+=======
+    height: auto; /* Dejamos que crezca hacia abajo */
+    flex-wrap: wrap; /* Permite que la barra de búsqueda baje */
+>>>>>>> c4977ba5911efce1fb6f2a07dfe71cd69e3ba958:styles/css/main.css
     padding: 10px 15px;
     gap: 10px;
   }
 }
 .header__logo-box {
+<<<<<<< HEAD:ui/static/css/main.css
   height: 100%;
   padding: 0 10px;
+=======
+  /* background-color: $color-fondo; <-- HEMOS BORRADO ESTO */
+  height: 100%;
+  padding: 0 10px; /* Le quitamos un poco de relleno para ahorrar espacio */
+>>>>>>> c4977ba5911efce1fb6f2a07dfe71cd69e3ba958:styles/css/main.css
   display: flex;
   align-items: center;
   justify-content: center;
-  /* Usamos el Mixin */
 }
 @media (max-width: 900px) {
   .header__logo-box {
@@ -226,15 +245,20 @@ html, body {
   }
 }
 .header__action {
+<<<<<<< HEAD:ui/static/css/main.css
   position: relative; /* Convierte a este contenedor en el "ancla" */
   display: flex; /* Mantiene el icono perfectamente alineado */
+=======
+  position: relative;
+  display: flex;
+>>>>>>> c4977ba5911efce1fb6f2a07dfe71cd69e3ba958:styles/css/main.css
   align-items: center;
-  cursor: pointer; /* Hace que salga la manita al pasar el ratón */
+  cursor: pointer;
 }
 .header__dropdown {
   position: absolute;
-  top: 130%; /* Se coloca justo debajo del botón */
-  right: 0; /* Se alinea a la derecha */
+  top: 130%;
+  right: 0;
   background-color: #ffffff;
   color: #333333;
   min-width: 220px;
@@ -242,24 +266,26 @@ html, body {
   border-radius: 8px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
   z-index: 200;
-  /* Magia de invisibilidad y animación */
   opacity: 0;
   visibility: hidden;
-  transform: translateY(15px); /* Empieza un poco más abajo */
-  transition: all 0.3s ease; /* Transición suave */
+  transform: translateY(15px);
+  transition: all 0.3s ease;
 }
 .header__dropdown p {
   font-size: 0.9rem;
   margin-bottom: 10px;
   color: #999999;
 }
+<<<<<<< HEAD:ui/static/css/main.css
 .header__dropdown {
   /* Esta clase se la pondremos con JavaScript al hacer clic */
 }
+=======
+>>>>>>> c4977ba5911efce1fb6f2a07dfe71cd69e3ba958:styles/css/main.css
 .header__dropdown--active {
   opacity: 1;
   visibility: visible;
-  transform: translateY(0); /* Sube a su posición original */
+  transform: translateY(0);
 }
 .header__dropdown-link {
   display: block;
@@ -321,7 +347,11 @@ footer {
   font-weight: bold;
   text-transform: uppercase;
   transition: opacity 0.3s;
+<<<<<<< HEAD:ui/static/css/main.css
   display: inline-block;
+=======
+  display: inline-block; /* Importante para que los márgenes funcionen bien */
+>>>>>>> c4977ba5911efce1fb6f2a07dfe71cd69e3ba958:styles/css/main.css
   /* Botón más compacto en móvil */
 }
 @media (max-width: 600px) {
@@ -348,9 +378,11 @@ footer {
 .hero__images {
   display: flex;
   width: 100%;
+  /* Las fotos ya no están ancladas al fondo, ahora dictan el tamaño real de la caja */
 }
 .hero__images picture {
   width: 33.333%;
+<<<<<<< HEAD:ui/static/css/main.css
   display: block;
 }
 .hero__image {
@@ -363,10 +395,16 @@ footer {
 }
 .hero__content {
   position: absolute;
+=======
+  height: auto; /* 👈 MAGIA: Al poner auto, mantiene su proporción original. No recorta y no deja huecos. */
+  display: block;
+  opacity: 0.8; /* Un poco oscurecidas para que se lea bien el texto blanco */
+}
+.hero__content {
+  position: absolute; /* El texto flota encima de las fotos */
+>>>>>>> c4977ba5911efce1fb6f2a07dfe71cd69e3ba958:styles/css/main.css
   width: 100%;
   text-align: center;
-  display: flex;
-  flex-direction: column;
   z-index: 10;
   padding: 0 20px;
   box-sizing: border-box;
@@ -407,13 +445,21 @@ footer {
   padding: 80px 40px;
   background-color: #ffffff;
   width: 100%;
+<<<<<<< HEAD:ui/static/css/main.css
   box-sizing: border-box; /* Para que el padding no sume al ancho total */
+=======
+  box-sizing: border-box; /* 👈 MAGIA: Evita que el relleno engorde la caja */
+>>>>>>> c4977ba5911efce1fb6f2a07dfe71cd69e3ba958:styles/css/main.css
 }
 @media (max-width: 900px) {
   .benefits {
     flex-wrap: wrap;
     gap: 20px;
+<<<<<<< HEAD:ui/static/css/main.css
     padding: 40px 20px;
+=======
+    padding: 40px 20px; /* Un poco menos de relleno en móviles */
+>>>>>>> c4977ba5911efce1fb6f2a07dfe71cd69e3ba958:styles/css/main.css
   }
 }
 .benefits__item {
@@ -424,7 +470,11 @@ footer {
   justify-content: center;
   text-align: center;
   border-radius: 5px;
+<<<<<<< HEAD:ui/static/css/main.css
   box-sizing: border-box;
+=======
+  box-sizing: border-box; /* 👈 Seguridad extra para los cuadritos */
+>>>>>>> c4977ba5911efce1fb6f2a07dfe71cd69e3ba958:styles/css/main.css
 }
 @media (max-width: 900px) {
   .benefits__item {
@@ -472,13 +522,18 @@ footer {
   gap: 50px;
   background-color: #ffffff;
   align-items: stretch;
+<<<<<<< HEAD:ui/static/css/main.css
   box-sizing: border-box;
   /* Quitamos el subrayado por defecto de los links azules */
+=======
+  box-sizing: border-box; /* 👈 MAGIA: Adiós al corte derecho */
+  /* Quitamos el subrayado feo por defecto de los links azules */
+>>>>>>> c4977ba5911efce1fb6f2a07dfe71cd69e3ba958:styles/css/main.css
 }
 .category .category__link {
   text-decoration: none;
-  color: inherit; /* Hereda el gris o naranja del category__item */
-  display: block; /* Hace que toda el área sea "clickeable", no solo las letras */
+  color: inherit;
+  display: block;
 }
 @media (max-width: 900px) {
   .category {
@@ -541,7 +596,12 @@ footer {
   color: #ff6a00;
   margin-bottom: 40px;
   font-weight: normal;
+<<<<<<< HEAD:ui/static/css/main.css
   overflow-wrap: break-word; /* Permite que el texto se divida en varias líneas si es necesario */
+=======
+  /* 👈 MAGIA: Si la palabra no cabe en la pantalla, permite partirla con un guion invisible */
+  overflow-wrap: break-word;
+>>>>>>> c4977ba5911efce1fb6f2a07dfe71cd69e3ba958:styles/css/main.css
 }
 @media (max-width: 600px) {
   .category__title {
@@ -551,7 +611,11 @@ footer {
 }
 @media (max-width: 380px) {
   .category__title {
+<<<<<<< HEAD:ui/static/css/main.css
     font-size: 1.8rem; /* Letra más pequeña para el móvil mini */
+=======
+    font-size: 1.8rem; /* 👈 Letra más pequeña para el móvil mini */
+>>>>>>> c4977ba5911efce1fb6f2a07dfe71cd69e3ba958:styles/css/main.css
   }
 }
 .category__columns {
@@ -567,6 +631,12 @@ footer {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+<<<<<<< HEAD:ui/static/css/main.css
+=======
+.category__columns {
+  /* 👈 EL ARREGLO DE JUVENIL Y MISTER: 1 sola columna en móvil para que se apilen igual que la de mujer */
+}
+>>>>>>> c4977ba5911efce1fb6f2a07dfe71cd69e3ba958:styles/css/main.css
 @media (max-width: 600px) {
   .category__columns {
     grid-template-columns: 1fr;
@@ -580,7 +650,11 @@ footer {
   text-transform: uppercase;
   font-family: "Helvetica Neue", Arial, sans-serif;
   letter-spacing: 1px;
+<<<<<<< HEAD:ui/static/css/main.css
   overflow-wrap: break-word;
+=======
+  overflow-wrap: break-word; /* 👈 Obliga a la palabra a partirse si choca con el borde */
+>>>>>>> c4977ba5911efce1fb6f2a07dfe71cd69e3ba958:styles/css/main.css
 }
 .category__list {
   list-style-type: none;
@@ -593,7 +667,11 @@ footer {
   margin-bottom: 12px;
   cursor: pointer;
   transition: color 0.2s;
+<<<<<<< HEAD:ui/static/css/main.css
   overflow-wrap: break-word;
+=======
+  overflow-wrap: break-word; /* 👈 Protección extra para las listas */
+>>>>>>> c4977ba5911efce1fb6f2a07dfe71cd69e3ba958:styles/css/main.css
 }
 .category__item:hover {
   color: #ff6a00;
